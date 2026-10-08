@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | João Amario</title>
+  <meta name="description" content="The story of João Amario: from northern Tocantins, Brazil, to a Ph.D. in Genetics and Plant Breeding at UFV and a sandwich Ph.D. at the University of Illinois Urbana-Champaign.">
+  <meta name="author" content="João Marcos Amario de Sousa">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="João Amario">
+  <meta property="og:title" content="About | João Amario">
+  <meta property="og:description" content="The story of João Amario: from northern Tocantins, Brazil, to a Ph.D. in Genetics and Plant Breeding at UFV and a sandwich Ph.D. at the University of Illinois Urbana-Champaign.">
+  <meta property="og:url" content="https://amario17.github.io/about/">
+  <meta property="og:image" content="https://amario17.github.io/assets/perfil.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    /* Page transition: reveal the new page with a circle growing from the clicked link */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="/"]');
+        if (a) { try { sessionStorage.setItem('vt-origin', e.clientX + ',' + e.clientY); } catch (_) {} }
+      });
+      window.addEventListener('pagereveal', function (e) {
+        if (!e.viewTransition) return;
+        document.documentElement.classList.add('vt-nav');
+        var o = null;
+        try { o = sessionStorage.getItem('vt-origin'); sessionStorage.removeItem('vt-origin'); } catch (_) {}
+        var xy = o ? o.split(',').map(Number) : [innerWidth / 2, 0];
+        var r = Math.hypot(Math.max(xy[0], innerWidth - xy[0]), Math.max(xy[1], innerHeight - xy[1]));
+        e.viewTransition.ready.then(function () {
+          document.documentElement.animate({
+            clipPath: ['circle(0px at ' + xy[0] + 'px ' + xy[1] + 'px)',
+                       'circle(' + r + 'px at ' + xy[0] + 'px ' + xy[1] + 'px)']
+          }, { duration: 750, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' });
+        });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://amario17.github.io/about/">
+</head>
+<body data-page="about">
+<canvas class="particles-canvas particles-fixed" data-mode="fixed" aria-hidden="true"></canvas>
+<header>
+  <nav>
+    <div class="nav-brand">
+      <h1>João Amario</h1>
+      <p class="lang-en">Ph.D. Candidate in Genetics and Plant Breeding</p>
+      <p class="lang-pt">Doutorando em Genética e Melhoramento</p>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/" data-page="index"><span class="lang-en">Home</span><span class="lang-pt">Início</span></a></li>
+        <li><a href="/research/" data-page="research"><span class="lang-en">Research</span><span class="lang-pt">Pesquisa</span></a></li>
+        <li><a href="/projects/" data-page="projects"><span class="lang-en">Tools</span><span class="lang-pt">Ferramentas</span></a></li>
+        <li><a href="/assessments/" data-page="assessments"><span class="lang-en">Assessments</span><span class="lang-pt">Avaliações</span></a></li>
+        <li><a href="/about/" data-page="about"><span class="lang-en">About</span><span class="lang-pt">Sobre</span></a></li>
+        <li><a href="/contact/" data-page="contact"><span class="lang-en">Contact</span><span class="lang-pt">Contacto</span></a></li>
+      </ul>
+      <div class="language-switcher">
+        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+        <button onclick="setLanguage('pt')" id="btn-pt">PT</button>
+      </div>
+      <a class="nav-cv-btn lang-en" href="/assets/joao_amario_cv.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Download CV</span>
+      </a>
+      <a class="nav-cv-btn lang-pt" href="/assets/joao_amario_cv_pt.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Baixar Currículo</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <div class="page-banner">
+    <p class="eyebrow lang-en">About me</p>
+    <p class="eyebrow lang-pt">Sobre mim</p>
+<h2 class="lang-en">My Story</h2>
+<h2 class="lang-pt">Minha História</h2>
+  </div>
+
+  <section class="card reveal origin-hook">
+    <h2 class="lang-en">Where It All Began</h2>
+    <h2 class="lang-pt">Onde Tudo Começou</h2>
+
+    <div class="origin-grid">
+      <div class="origin-map-col">
+        <div class="origin-map-wrap world-map" role="img" aria-label="Map of Brazil marking Ananás, in northern Tocantins" data-fit="076" data-stops='[{"n":"","lon":-48.0731,"lat":-6.3647}]'>
+          <canvas class="world-map-canvas"></canvas>
+          <svg class="world-map-lines" aria-hidden="true"></svg>
+        </div>
+        <p class="origin-pin-label">Ananás, TO</p>
+        <p class="origin-pin-sub lang-en">Population just over 9,000</p>
+        <p class="origin-pin-sub lang-pt">Pouco mais de 9 mil habitantes</p>
+        <p class="origin-map-credit lang-en">Map data: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a></p>
+        <p class="origin-map-credit lang-pt">Dados do mapa: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a></p>
+      </div>
+
+      <div class="origin-connector" aria-hidden="true">
+        <svg viewBox="0 0 100 20" width="100" height="20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="10" x2="100" y2="10"/>
+        </svg>
+      </div>
+
+      <div class="origin-photo-col">
+        <img class="origin-photo" src="/assets/joao_dr.jpeg" alt="João Amario today">
+        <p class="origin-photo-caption lang-en">João today, but this is where it all started.</p>
+        <p class="origin-photo-caption lang-pt">João hoje, mas foi aqui que tudo começou.</p>
+      </div>
+    </div>
+
+    <div class="lang-en">
+      <p>I was born on December 17, 1999, in Ananás, in northern Tocantins, into a simple family raised on the land. My mother raised me and my six siblings on her own, and in that context, studying wasn't a common reality. It was working the fields that taught me, from an early age, about effort, responsibility, and above all, about the importance of seeking a different life through education.</p>
+      <p>At 13, I left home to study at the Federal Institute of Tocantins, in Araguatins. It was there that I had my first contact with a world I hadn't known before: the internet, technology, science, and new possibilities. It was also when I realized that knowledge could take me far beyond the place where I was born, doing what I loved: working with agriculture.</p>
+      <p>Looking back today, I see that decision at 13 completely changed the course of my life. I'm a Ph.D. candidate in Genetics and Plant Breeding, working with quantitative genetics, genomic prediction, machine learning, and data integration to develop new breeding strategies. I still work with what I knew as a child, agriculture, but now using science and technology to help transform it. For someone from a family where almost no one had the chance to reach higher education, science was never just a profession: it represents the possibility of transforming a reality. Every step I take today is a continuation of that decision I made at 13, to study in order to change my life and, perhaps, other people's lives too.</p>
+    </div>
+    <div class="lang-pt">
+      <p>Nasci em 17 de dezembro de 1999, em Ananás, no norte do Tocantins, em uma família simples, criada na roça. Minha mãe criou sozinha a mim e aos meus seis irmãos, e, naquele contexto, estudar não era uma realidade comum. Foi trabalhando no campo que aprendi desde cedo sobre esforço, responsabilidade e, principalmente, sobre a importância de buscar uma vida diferente por meio da educação.</p>
+      <p>Aos 13 anos, saí de casa para estudar no Instituto Federal do Tocantins, em Araguatins. Foi ali que tive contato, pela primeira vez, com um mundo que até então eu desconhecia: internet, tecnologia, ciência e novas possibilidades. Foi também quando percebi que o conhecimento poderia me levar muito além do lugar onde nasci, fazendo aquilo que eu gostava: trabalhar com o campo.</p>
+      <p>Hoje, olhando para trás, vejo que aquela decisão aos 13 anos mudou completamente a minha trajetória. Sou doutorando em Genética e Melhoramento de Plantas e trabalho com genética quantitativa, predição genômica, aprendizado de máquina e integração de dados para desenvolver novas estratégias de melhoramento. Continuo trabalhando com aquilo que conheci na infância, o campo, mas agora com ciência e tecnologia para ajudar a transformar a agricultura. Para quem vem de uma família onde quase ninguém teve a oportunidade de chegar ao ensino superior, a ciência nunca foi apenas uma profissão: ela representa a possibilidade de transformar uma realidade. Cada passo que dou hoje é uma continuação daquela decisão que tomei aos 13 anos, estudar para mudar a minha vida e, quem sabe, também a de outras pessoas.</p>
+    </div>
+  </section>
+
+  <!-- English -->
+  <div class="lang-en">
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Experience</h2>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2026 – present</span>
+          <h3 class="story-chapter-title">Visiting Doctoral Researcher (Sandwich Ph.D.)</h3>
+        </div>
+        <p class="story-chapter-place">University of Illinois Urbana&#8211;Champaign</p>
+        <div class="story-chapter-text">
+          <p>I'm conducting a sandwich doctoral stay focused on genomic prediction models that use environmental information, aiming to improve prediction accuracy across environments.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2024 – present</span>
+          <h3 class="story-chapter-title">Ph.D. Researcher, Genetics &amp; Breeding</h3>
+        </div>
+        <p class="story-chapter-place">Federal University of Viçosa (UFV) / IDATA, QGSL Lab</p>
+
+        <div class="story-gallery">
+          <img src="/assets/doutorado_1.jpeg" alt="João standing with his advisor Kaio Olímpio in front of their research poster at the SIGM conference" loading="lazy">
+          <img src="/assets/doutorado_2.jpeg" alt="João presenting as a finalist at the GDM Universities Challenge" loading="lazy">
+          <img src="/assets/doutorado_3.jpeg" alt="João holding his prize and certificate at the Bayer-UFV AgTech Hackathon" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">In my Ph.D. in Genetics and Breeding, under the guidance of Professor <a href="https://scholar.google.com/citations?user=KS9I5bQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Kaio Olímpio</a>, I began working in a line of research that brought together my hands-on field experience with modern tools in data analysis, quantitative genetics, and statistical learning.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>My earlier path, from working the land to my time in breeding programs and production systems, showed me that agriculture's challenges increasingly demanded the integration of biological knowledge, data, and technology. In my Ph.D., I started working with genomic prediction, enviromics, and modeling applied to plant breeding, seeking to develop more efficient strategies for genotype selection and decision-making in breeding programs.</p>
+              <p>During this stage, I also had the opportunity to take part in different projects and challenges that broadened my training as a researcher. I was a winner of the GDM Universities Challenge and the Bayer-UFV Hackathon, experiences that brought academic research closer to the real demands of industry. I also taught courses and training sessions on enviromics, sharing knowledge on integrating environmental data into breeding programs. I also took part in projects developing sweet corn populations, from crosses between lines to opening new populations to explore genetic variability. Today, I see my Ph.D. as the consolidation of my entire path: I still work with the land I knew as a child, but now using science, statistics, and technology to create new tools capable of transforming agriculture.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2022 – 2024</span>
+          <h3 class="story-chapter-title">M.Sc. Researcher, Genetics &amp; Breeding</h3>
+        </div>
+        <p class="story-chapter-place">Federal University of Viçosa (UFV)</p>
+
+        <div class="story-gallery">
+          <img src="/assets/mestrado_1.jpeg" alt="João holding a measuring rod and clipboard in a wheat field trial" loading="lazy">
+          <img src="/assets/mestrado_2.jpeg" alt="João smiling, wearing a hat, in a tilled field near the UFV campus" loading="lazy">
+          <img src="/assets/mestrado_3.jpeg" alt="João bent over measuring wheat plants in the field" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">After my professional experience in the field, I returned to academia to pursue my master's in Genetics and Breeding, working with segregating wheat populations. This period represented a new stage in my training, as I began to bring together my hands-on experience in breeding programs with a deeper understanding of quantitative genetics and data analysis.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>Working with different segregating generations, I realized that each generation showed different levels of genetic variability, and that this information needed to be properly accounted for in the analyses. Through statistical modeling, I incorporated the generation effect into joint models, making it possible to analyze different generations simultaneously and improve selection capacity within the breeding program.</p>
+              <p>It was during my master's that I began to see the enormous potential of data analysis as a tool to transform the efficiency of breeding programs. The combination of my hands-on experience in the field, following production systems and real agricultural challenges, with the knowledge I gained in quantitative genetics, showed me that I could contribute not just by running experiments, but also by developing and applying new analytical approaches. That realization was decisive in my choice to continue into a Ph.D. focused on modeling, prediction, and data integration, aiming to develop tools that help breeders make better decisions.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2021 – 2022</span>
+          <h3 class="story-chapter-title">Farm Manager</h3>
+        </div>
+        <p class="story-chapter-place">Darcinópolis, Tocantins</p>
+
+        <div class="story-gallery">
+          <img src="/assets/gerente_fazenda_1.jpeg" alt="João holding a straw hat beside a freshly tilled field at Fazenda Mundo Novo" loading="lazy">
+          <img src="/assets/gerente_fazenda_2.jpeg" alt="João wearing a Nelore GGBF cap inside a farm vehicle overlooking pasture" loading="lazy">
+          <img src="/assets/gerente_fazenda_3.jpeg" alt="João holding a cap and a corn cob in a maize field" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">At 21, I took on one of the biggest challenges of my professional path: managing Fazenda Mundo Novo, a property recently acquired by Grupo Nelore GGBF that was in a practically abandoned state.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>It was a phase in which I had to take on responsibilities far beyond the technical side of Agronomy: leading teams, hiring and letting go of employees, organizing processes, making strategic decisions, and rebuilding a productive structure. Being young, I faced doubts and prejudice at first, but I chose to respond the only way that ever made sense to me: with work, honesty, commitment, a pursuit of excellence, and humility.</p>
+              <p>This experience taught me the true meaning of leadership and teamwork. I learned that a farm isn't built just by machines, crops, or animals, but mainly by the people who make everything happen. With dedication and respect, I earned the team's trust and turned that environment into a project I'm very proud of. Beyond Fazenda Mundo Novo, I also began contributing to Fazenda Rio Verde, another property of the group, where we took part in implementing production systems, including corn, soybean, and Stylosanthes cultivation, crop-livestock integration, and opening more than 1,000 hectares for agricultural production.</p>
+              <p>When I decided to step down from direct farm management to pursue my dream of continuing my academic training with graduate school, the owner invited me to keep following Fazenda Mundo Novo remotely. To this day I maintain a close relationship with Grupo Nelore GGBF, taking part in important decisions and helping with hiring, layoffs, and investments in machinery and equipment. Looking back at that farm's transformation, and knowing I was part of building it, is one of the most rewarding experiences of my professional path.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2020 – 2021</span>
+          <h3 class="story-chapter-title">Technical Consultant</h3>
+        </div>
+        <p class="story-chapter-place">SENAR, Imperatriz, Maranhão</p>
+
+        <div class="story-gallery">
+          <img src="/assets/consultor_senar_1.jpeg" alt="João wearing an agronomy technical assistance vest at a cattle pen during a farm visit" loading="lazy">
+          <img src="/assets/consultor_senar_2.jpeg" alt="João standing in a tall corn field during a farm consulting visit" loading="lazy">
+          <img src="/assets/consultor_senar_3.jpeg" alt="João wearing ear protection inside farm machinery during a visit" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">After graduating, I had the opportunity to work as a consultant for SENAR-Maranhão, serving 25 rural properties in the region known as Estrada do Arroz.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>My work was tied to the dairy chain, but this experience showed me that milk production depended on much broader planning: before producing milk, it was necessary to produce quality feed and structure the whole production system. During this period, I took part in designing and monitoring projects for rotational pastures, forage plots, and silage production of corn, sorghum, and soybean. It was a fundamental phase in my training as an agronomist, since I developed the ability to integrate different areas of knowledge and understand the rural property as a complete system.</p>
+              <p>Beyond the technical learning, this experience taught me the value of human relationships in the field. The 25 producers I worked with contributed a great deal to my training, but two people marked this journey especially: Eduardo and Davi. They opened the doors of their homes to welcome me, and often I wasn't just a consultant, but part of the family. Living alongside them, sharing their routine, and experiencing the reality of each property gave me an experience that went far beyond technical assistance. During that period, Maranhão became a place where I had not just a job, but also two families who took me in and became part of my journey.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2017 – 2020</span>
+          <h3 class="story-chapter-title">Undergraduate Degree, Agricultural Engineering</h3>
+        </div>
+        <p class="story-chapter-place">Federal Institute of Tocantins, Araguatins Campus</p>
+
+        <div class="story-gallery">
+          <img src="/assets/graduacao_agronomia_1.jpeg" alt="João and classmates preparing soil with hoes during a field class" loading="lazy">
+          <img src="/assets/graduacao_agronomia_2.jpeg" alt="João crouched with classmates in a freshly tilled field during a planting activity" loading="lazy">
+          <img src="/assets/graduacao_agronomia_3.jpeg" alt="João standing amid a tall stand of biomass sorghum during field research" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">During my Agronomy degree, I discovered the field that would change the course of my life: Genetics and Plant Breeding.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>Under the guidance of Professor Leonardo Correia, a Ph.D. in Genetics and Breeding from UFV, I took part in work with Embrapa Milho e Sorgo's genetic improvement program, evaluating dual-purpose biomass sorghum materials in the far north of Tocantins, intended for both biomass production and forage use. Midway through my degree, I sought to get even closer to the field and did my required internship in UFV's Bean Genetics and Breeding Program, under the guidance of Professor José Eustáquio Carneiro. I also had the opportunity to collaborate on VCU trials for UFV's breeding program, in partnership with Professor Leonardo.</p>
+              <p>It was during this period that I first heard about Genotype &times; Environment Interaction and began to understand agriculture from a scientific perspective. I started studying genetics and breeding and realized the complexity behind selecting and developing new materials. The more I learned, the more interested I became in the field, and the clearer the path I wanted to follow became. If, at 13, the Federal Institute had shown me that I could become a "Dr." working with agriculture, it was during my undergraduate degree that I discovered what kind of "Dr." I wanted to be: a researcher in Genetics and Plant Breeding.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2014 – 2016</span>
+          <h3 class="story-chapter-title">Technical Program in Agricultural Sciences, Integrated with High School</h3>
+        </div>
+        <p class="story-chapter-place">Federal Institute of Tocantins, Araguatins Campus</p>
+
+        <div class="story-gallery">
+          <img src="/assets/tecnico_agro_1.jpeg" alt="João, as a teenager, hand-feeding a calf during a practical class at IFTO" loading="lazy">
+          <img src="/assets/tecnico_agro_2.jpeg" alt="João crouched beside a calf at IFTO's cattle unit, smiling" loading="lazy">
+          <img src="/assets/tecnico_agro_3.jpeg" alt="João holding a calf close during livestock-handling practice at IFTO" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">At the Federal Institute of Tocantins, in Araguatins, I started the Technical Program in Agricultural Sciences integrated with high school at age 13. It was the first time I lived on my own, away from Ananás and my family, and also the first time I came into contact with a world so different from everything I knew.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Read full story</span><span class="story-more-open">Show less</span></summary>
+            <div class="story-more-body">
+              <p>Throughout the program, I went through different areas of agricultural training, including agriculture, livestock, soils, machinery, and plant and animal production. The land, which until then I knew mainly as the place where my family worked, began to take on new dimensions: I started to see it also as a space for knowledge, science, technology, and possibilities.</p>
+              <p>It was also in Araguatins that I had my first contact with Wi-Fi and the internet, and got my first cell phone. It seems like a simple thing today, but for me, it meant discovering a world I didn't even know existed. It was there, between classes, hands-on activities, and so many new things, that I began to understand that maybe I could go much further than I imagined. Until then, I believed that, to "become someone" and change my life, I had to be a doctor or a lawyer. The Federal Institute showed me there were other paths. It was there that I discovered I could become a "Dr." working with what I already loved: agriculture. More than technical training, the Institute taught me to see possibilities and, above all, to understand that I still didn't know how far I could go.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Leadership <span class="amp">&amp;</span> Mentoring</h2>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2026 – present</span>
+          <h3 class="story-chapter-title">Mentee, Bayer University Mentoring Program (B4U)</h3>
+        </div>
+        <p class="story-chapter-place">Bayer</p>
+        <div class="story-chapter-text">
+          <p>I was selected for B4U, Bayer's annual competitive program that offers one-on-one mentoring to graduate students and postdoctoral researchers. I am paired with an industry scientist who mentors me in setting and reaching professional development goals, with a focus on soft skills, career planning and a clearer view of how research works inside the seed industry.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2023 – 2024</span>
+          <h3 class="story-chapter-title">Events Coordinator, GenMelhor</h3>
+        </div>
+        <p class="story-chapter-place">Study Group in Genetics and Plant Breeding, UFV</p>
+        <div class="story-chapter-text">
+          <p>As part of the coordination team of GenMelhor, I organized academic and outreach events: planning schedules, keeping documentation and reports up to date, and creating spaces for discussion and networking that brought students closer to research and professionals in Genetics and Plant Breeding.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2023 – 2024</span>
+          <h3 class="story-chapter-title">Coordinator, InterGen</h3>
+        </div>
+        <p class="story-chapter-place">Representing GenMelhor</p>
+        <div class="story-chapter-text">
+          <p>I represented GenMelhor in the coordination of InterGen, an extension group in Genetics and Plant Breeding that brings together participants from seven universities across different regions of Brazil.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Journey</h2>
+      <p>From northern Tocantins to the American Midwest, each stop below has shaped the researcher he is today.</p>
+      <div class="journey-map-wrap">
+        <div class="world-map" role="img" aria-label="World map showing my journey, from northern Tocantins, Brazil, to Illinois, USA" data-stops='[{"n":1,"lon":-48.1236,"lat":-5.6508,"dx":-38,"dy":-26},{"n":2,"lon":-47.4917,"lat":-5.5264,"dx":4,"dy":-36},{"n":3,"lon":-47.7597,"lat":-6.7156,"dx":-38,"dy":16},{"n":4,"lon":-42.8825,"lat":-20.7546},{"n":5,"lon":-88.2073,"lat":40.1106,"usa":true}]'>
+          <canvas class="world-map-canvas"></canvas>
+          <svg class="world-map-lines" aria-hidden="true"></svg>
+        </div>
+
+        <p class="journey-map-credit">Map data: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a></p>
+
+        <div class="journey-legend">
+          <div class="journey-stop">
+            <span class="journey-stop-num">1</span>
+            <div class="journey-stop-place">Araguatins, TO</div>
+            <div class="journey-stop-year">2014 – 2020</div>
+            <p class="journey-stop-desc">High school and Agronomy degree at IFTO.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">2</span>
+            <div class="journey-stop-place">Imperatriz, MA</div>
+            <div class="journey-stop-year">2020 – 2021</div>
+            <p class="journey-stop-desc">Technical consultant for SENAR.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">3</span>
+            <div class="journey-stop-place">Darcinópolis, TO</div>
+            <div class="journey-stop-year">2021 – 2022</div>
+            <p class="journey-stop-desc">Farm manager.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">4</span>
+            <div class="journey-stop-place">Viçosa, MG</div>
+            <div class="journey-stop-year">2022 – present</div>
+            <p class="journey-stop-desc">M.Sc. and Ph.D. in Genetics and Breeding at UFV.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num usa">5</span>
+            <div class="journey-stop-place">Urbana-Champaign, IL, USA</div>
+            <div class="journey-stop-year">2026 – present</div>
+            <p class="journey-stop-desc">Sandwich Ph.D. on genomic prediction models with environmental information.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Portuguese -->
+  <div class="lang-pt">
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Experiência</h2>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2026 – atual</span>
+          <h3 class="story-chapter-title">Pesquisador Visitante (Doutorado Sanduíche)</h3>
+        </div>
+        <p class="story-chapter-place">University of Illinois Urbana&#8211;Champaign</p>
+        <div class="story-chapter-text">
+          <p>Realizo um período de doutorado sanduíche com foco em modelos de predição genômica que usam informações ambientais, buscando melhorar a acurácia das predições entre ambientes.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2024 – atual</span>
+          <h3 class="story-chapter-title">Doutorando em Genética e Melhoramento</h3>
+        </div>
+        <p class="story-chapter-place">Universidade Federal de Viçosa (UFV) / Idata, Laboratório QGSL</p>
+
+        <div class="story-gallery">
+          <img src="/assets/doutorado_1.jpeg" alt="João ao lado do seu orientador Kaio Olímpio em frente ao pôster de pesquisa no congresso SIGM" loading="lazy">
+          <img src="/assets/doutorado_2.jpeg" alt="João apresentando como finalista no Desafio GDM Universidades" loading="lazy">
+          <img src="/assets/doutorado_3.jpeg" alt="João segurando seu prêmio e certificado no Hackathon Bayer-UFV" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">No doutorado em Genética e Melhoramento, sob orientação do professor <a href="https://scholar.google.com/citations?user=KS9I5bQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Kaio Olímpio</a>, passei a trabalhar em uma linha que unia minha experiência prática no campo com ferramentas modernas de análise de dados, genética quantitativa e aprendizado estatístico.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Minha trajetória anterior, desde o trabalho na roça até a atuação em programas de melhoramento e sistemas produtivos, me mostrou que os desafios da agricultura exigiam cada vez mais a integração entre conhecimento biológico, dados e tecnologia. No doutorado, comecei a atuar com predição genômica, enviromics e modelagem aplicada ao melhoramento de plantas, buscando desenvolver estratégias mais eficientes para a seleção de genótipos e tomada de decisão em programas de melhoramento.</p>
+              <p>Durante essa etapa, também tive a oportunidade de participar de diferentes projetos e desafios que ampliaram minha formação como pesquisador. Fui vencedor do Desafio GDM Universidades e do Hackathon Bayer-UFV, experiências que aproximaram a pesquisa acadêmica das demandas reais da indústria. Também ministrei cursos e treinamentos sobre enviromics, compartilhando conhecimentos sobre a integração de dados ambientais aos programas de melhoramento. Além disso, participei de projetos envolvendo o desenvolvimento de populações de milho doce, desde cruzamentos entre linhagens até a abertura de novas populações para exploração de variabilidade genética. Hoje, vejo o doutorado como a consolidação de toda a minha trajetória: continuo trabalhando com o campo que conheci na infância, mas agora utilizando ciência, estatística e tecnologia para criar novas ferramentas capazes de transformar a agricultura.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2022 – 2024</span>
+          <h3 class="story-chapter-title">Mestrando em Genética e Melhoramento</h3>
+        </div>
+        <p class="story-chapter-place">Universidade Federal de Viçosa (UFV)</p>
+
+        <div class="story-gallery">
+          <img src="/assets/mestrado_1.jpeg" alt="João segurando uma régua de medição e uma prancheta em um ensaio de trigo a campo" loading="lazy">
+          <img src="/assets/mestrado_2.jpeg" alt="João sorrindo, usando chapéu, em uma área preparada próxima ao campus da UFV" loading="lazy">
+          <img src="/assets/mestrado_3.jpeg" alt="João curvado medindo plantas de trigo no campo" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">Após minha experiência profissional no campo, retornei à academia para realizar o mestrado em Genética e Melhoramento, trabalhando com populações segregantes de trigo. Esse período representou uma nova etapa da minha formação, pois comecei a unir minha experiência prática em programas de melhoramento com uma visão mais aprofundada de genética quantitativa e análise de dados.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Trabalhando com diferentes gerações segregantes, percebi que cada geração apresentava diferentes níveis de variabilidade genética e que essa informação precisava ser considerada de forma adequada nas análises. Por meio da modelagem estatística, incorporei o efeito de geração em modelos conjuntos, permitindo analisar diferentes gerações simultaneamente e melhorar a capacidade de seleção dentro do programa de melhoramento.</p>
+              <p>Foi durante o mestrado que comecei a perceber o enorme potencial da análise de dados como ferramenta para transformar a eficiência dos programas de melhoramento. A combinação entre minha vivência no campo, acompanhando sistemas produtivos e desafios reais da agricultura, e o conhecimento adquirido em genética quantitativa mostrou que eu poderia contribuir não apenas conduzindo experimentos, mas também desenvolvendo e aplicando novas abordagens analíticas. Essa percepção foi decisiva para minha escolha de seguir no doutorado em uma linha mais voltada à modelagem, predição e integração de dados, buscando desenvolver ferramentas que auxiliem os melhoristas na tomada de decisão.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2021 – 2022</span>
+          <h3 class="story-chapter-title">Gerente de Fazenda</h3>
+        </div>
+        <p class="story-chapter-place">Darcinópolis, Tocantins</p>
+
+        <div class="story-gallery">
+          <img src="/assets/gerente_fazenda_1.jpeg" alt="João segurando um chapéu de palha ao lado de uma lavoura recém-arada na Fazenda Mundo Novo" loading="lazy">
+          <img src="/assets/gerente_fazenda_2.jpeg" alt="João usando boné do Grupo Nelore GGBF dentro de um veículo com pastagem ao fundo" loading="lazy">
+          <img src="/assets/gerente_fazenda_3.jpeg" alt="João segurando um boné e uma espiga de milho em uma lavoura" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">Aos 21 anos, aceitei um dos maiores desafios da minha trajetória profissional: assumir a gerência da Fazenda Mundo Novo, uma propriedade recém-adquirida pelo Grupo Nelore GGBF que se encontrava em uma situação praticamente abandonada.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Foi uma fase em que precisei assumir responsabilidades muito além da parte técnica da Agronomia: liderar equipes, contratar e desligar colaboradores, organizar processos, tomar decisões estratégicas e reconstruir uma estrutura produtiva. Por ser jovem, enfrentei dúvidas e preconceitos no início, mas escolhi responder da única forma que sempre fez sentido para mim: com trabalho, honestidade, comprometimento, busca pela excelência e humildade.</p>
+              <p>Essa experiência me ensinou o verdadeiro significado de liderança e trabalho em equipe. Aprendi que uma fazenda não é construída apenas por máquinas, lavouras ou animais, mas principalmente pelas pessoas que fazem tudo acontecer. Com dedicação e respeito, conquistei a confiança da equipe e transformei aquele ambiente em um projeto do qual tenho muito orgulho. Além da Fazenda Mundo Novo, também passei a contribuir com a Fazenda Rio Verde, outra propriedade do grupo, onde participamos da implantação de sistemas produtivos, incluindo o cultivo de milho, soja, estilosantes, integração lavoura-pecuária e a abertura de mais de 1.000 hectares para produção agrícola.</p>
+              <p>Quando decidi sair da gestão direta da fazenda para seguir meu sonho de continuar minha formação acadêmica, realizando minha pós-graduação, o proprietário me convidou para continuar acompanhando a Fazenda Mundo Novo à distância. Até hoje mantenho uma relação próxima com o Grupo Nelore GGBF, participando de decisões importantes, auxiliando em processos de contratação, desligamentos e investimentos em máquinas e implementos. Olhar para a transformação daquela fazenda e saber que fiz parte dessa construção é uma das experiências mais gratificantes da minha trajetória profissional.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2020 – 2021</span>
+          <h3 class="story-chapter-title">Consultor Técnico</h3>
+        </div>
+        <p class="story-chapter-place">SENAR, Imperatriz, Maranhão</p>
+
+        <div class="story-gallery">
+          <img src="/assets/consultor_senar_1.jpeg" alt="João usando colete de assistência técnica agronômica em um curral durante visita à propriedade" loading="lazy">
+          <img src="/assets/consultor_senar_2.jpeg" alt="João em pé em meio a uma lavoura de milho durante visita técnica" loading="lazy">
+          <img src="/assets/consultor_senar_3.jpeg" alt="João usando protetor auricular dentro de uma máquina agrícola durante uma visita" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">Após a graduação, tive a oportunidade de atuar como consultor pelo SENAR-Maranhão, atendendo 25 propriedades rurais na região conhecida como Estrada do Arroz.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Meu trabalho estava ligado à cadeia do leite, mas essa experiência me mostrou que a produção leiteira dependia de um planejamento muito mais amplo: antes de produzir leite, era necessário produzir alimento de qualidade e estruturar todo o sistema de produção. Nesse período, participei da elaboração e acompanhamento de projetos de pastagens rotacionadas, capineiras e produção de silagens de milho, sorgo e soja. Foi uma fase fundamental para minha formação como agrônomo, pois desenvolvi a capacidade de integrar diferentes áreas do conhecimento e entender a propriedade rural como um sistema completo.</p>
+              <p>Além do aprendizado técnico, essa experiência me ensinou o valor das relações humanas no campo. Os 25 produtores com quem trabalhei contribuíram muito para minha formação, mas duas pessoas marcaram especialmente essa jornada: Eduardo e Davi. Eles abriram as portas de suas casas para me receber, e muitas vezes eu não era apenas um consultor, mas parte da família. Conviver com eles, compartilhar a rotina e viver a realidade de cada propriedade me proporcionou uma experiência que foi muito além da assistência técnica. Durante aquele período, o Maranhão se tornou um lugar onde eu não tinha apenas trabalho, mas também duas famílias que me acolheram e fizeram parte da minha trajetória.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2017 – 2020</span>
+          <h3 class="story-chapter-title">Graduação, Engenharia Agronômica</h3>
+        </div>
+        <p class="story-chapter-place">Instituto Federal do Tocantins, Campus Araguatins</p>
+
+        <div class="story-gallery">
+          <img src="/assets/graduacao_agronomia_1.jpeg" alt="João e colegas preparando o solo com enxadas durante uma aula prática" loading="lazy">
+          <img src="/assets/graduacao_agronomia_2.jpeg" alt="João agachado com colegas em um campo recém-arado durante uma atividade de plantio" loading="lazy">
+          <img src="/assets/graduacao_agronomia_3.jpeg" alt="João em pé em meio a um talhão de sorgo biomassa durante a pesquisa de campo" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">Durante a graduação em Agronomia, descobri a área que mudaria a minha trajetória: a Genética e o Melhoramento de Plantas.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Sob orientação do professor Leonardo Correia, doutor em Genética e Melhoramento pela UFV, participei de trabalhos com o programa de melhoramento genético da Embrapa Milho e Sorgo, avaliando materiais de sorgo biomassa de dupla aptidão no extremo norte do Tocantins, destinados tanto à produção de biomassa quanto ao uso forrageiro. No meio da graduação, busquei me aproximar ainda mais da área e realizei meu estágio obrigatório no Programa de Genética e Melhoramento de Feijão da UFV, sob orientação do professor José Eustáquio Carneiro. Também tive a oportunidade de colaborar em experimentos de VCU do programa de melhoramento da UFV, em parceria com o professor Leonardo.</p>
+              <p>Foi nesse período que ouvi pela primeira vez sobre Interação Genótipos &times; Ambientes e comecei a compreender o campo sob uma perspectiva científica. Passei a estudar genética e melhoramento e percebi a complexidade por trás da escolha e desenvolvimento de novos materiais. Quanto mais aprendia, mais me interessava pela área e mais claro ficava o caminho que queria seguir. Se, aos 13 anos, o Instituto Federal havia me mostrado que eu poderia ser um "Dr." trabalhando com o campo, foi durante a graduação que descobri que tipo de Dr. eu queria ser: um pesquisador em Genética e Melhoramento de Plantas.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2014 – 2016</span>
+          <h3 class="story-chapter-title">Técnico em Agropecuária Integrado ao Ensino Médio</h3>
+        </div>
+        <p class="story-chapter-place">Instituto Federal do Tocantins, Campus Araguatins</p>
+
+        <div class="story-gallery">
+          <img src="/assets/tecnico_agro_1.jpeg" alt="João, ainda adolescente, alimentando um bezerro durante aula prática no IFTO" loading="lazy">
+          <img src="/assets/tecnico_agro_2.jpeg" alt="João agachado ao lado de um bezerro no setor de bovinocultura do IFTO, sorrindo" loading="lazy">
+          <img src="/assets/tecnico_agro_3.jpeg" alt="João segurando um bezerro durante prática de manejo no IFTO" loading="lazy">
+        </div>
+
+        <div class="story-chapter-text">
+          <p class="story-teaser">No Instituto Federal do Tocantins, em Araguatins, comecei, aos 13 anos, o curso Técnico em Agropecuária integrado ao Ensino Médio. Foi a primeira vez que morei sozinho, longe de Ananás e da minha família, e também a primeira vez que entrei em contato com um mundo tão diferente de tudo o que eu conhecia.</p>
+          <details class="story-more">
+            <summary><span class="story-more-closed">Ver texto completo</span><span class="story-more-open">Mostrar menos</span></summary>
+            <div class="story-more-body">
+              <p>Ao longo do curso, passei por diferentes áreas da formação agropecuária, entre agricultura, pecuária, solos, máquinas, produção vegetal e animal. O campo, que até então eu conhecia principalmente como o lugar onde minha família trabalhava, começou a ganhar novas dimensões: eu passei a enxergá-lo também como espaço de conhecimento, ciência, tecnologia e possibilidades.</p>
+              <p>Foi também em Araguatins que tive meu primeiro contato com Wi-Fi, internet e ganhei meu primeiro celular. Parece algo simples hoje, mas, para mim, significava descobrir um mundo que eu nem sabia que existia. Foi ali, entre as aulas, as atividades práticas e tantas coisas novas, que comecei a entender que talvez eu pudesse chegar muito mais longe do que imaginava. Até então, eu acreditava que, para "ser alguém" e mudar de vida, precisava ser médico ou advogado. O Instituto Federal me mostrou que existiam outros caminhos. Foi ali que descobri que eu poderia ser um "Dr." trabalhando com aquilo que eu já amava: o campo. Mais do que uma formação técnica, o Instituto me ensinou a enxergar possibilidades e, principalmente, a entender que eu ainda não sabia até onde poderia chegar.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Liderança <span class="amp">&amp;</span> Mentoria</h2>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2026 – atual</span>
+          <h3 class="story-chapter-title">Mentorado, Bayer University Mentoring Program (B4U)</h3>
+        </div>
+        <p class="story-chapter-place">Bayer</p>
+        <div class="story-chapter-text">
+          <p>Fui selecionado para o B4U, programa anual e competitivo da Bayer que oferece mentoria individual a estudantes de pós-graduação e pesquisadores de pós-doutorado. Sou acompanhado por um cientista da indústria que me orienta a definir e alcançar metas de desenvolvimento profissional, com foco em habilidades interpessoais, planejamento de carreira e uma visão mais clara de como a pesquisa funciona dentro da indústria de sementes.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2023 – 2024</span>
+          <h3 class="story-chapter-title">Coordenador de Eventos, GenMelhor</h3>
+        </div>
+        <p class="story-chapter-place">Grupo de Estudos em Genética e Melhoramento de Plantas, UFV</p>
+        <div class="story-chapter-text">
+          <p>Como parte da equipe de coordenação do GenMelhor, organizei eventos acadêmicos e de extensão: planejei cronogramas, mantive a documentação e os relatórios em dia e criei espaços de discussão e networking que aproximaram os estudantes da pesquisa e dos profissionais de Genética e Melhoramento de Plantas.</p>
+        </div>
+      </div>
+
+      <div class="story-chapter">
+        <div class="story-chapter-head">
+          <span class="story-chapter-year">2023 – 2024</span>
+          <h3 class="story-chapter-title">Coordenador, InterGen</h3>
+        </div>
+        <p class="story-chapter-place">Representando o GenMelhor</p>
+        <div class="story-chapter-text">
+          <p>Representei o GenMelhor na coordenação do InterGen, grupo de extensão em Genética e Melhoramento de Plantas que reúne participantes de sete universidades de diferentes regiões do Brasil.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="card reveal" style="margin-top: 2rem;">
+      <h2>Trajetória</h2>
+      <p>Do norte do Tocantins ao meio-oeste americano, cada etapa abaixo ajudou a moldar o pesquisador que ele é hoje.</p>
+      <div class="journey-map-wrap">
+        <div class="world-map" role="img" aria-label="Mapa-múndi mostrando minha trajetória, do norte do Tocantins, Brasil, até Illinois, EUA" data-stops='[{"n":1,"lon":-48.1236,"lat":-5.6508,"dx":-38,"dy":-26},{"n":2,"lon":-47.4917,"lat":-5.5264,"dx":4,"dy":-36},{"n":3,"lon":-47.7597,"lat":-6.7156,"dx":-38,"dy":16},{"n":4,"lon":-42.8825,"lat":-20.7546},{"n":5,"lon":-88.2073,"lat":40.1106,"usa":true}]'>
+          <canvas class="world-map-canvas"></canvas>
+          <svg class="world-map-lines" aria-hidden="true"></svg>
+        </div>
+
+        <p class="journey-map-credit">Dados do mapa: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a></p>
+
+        <div class="journey-legend">
+          <div class="journey-stop">
+            <span class="journey-stop-num">1</span>
+            <div class="journey-stop-place">Araguatins, TO</div>
+            <div class="journey-stop-year">2014 – 2020</div>
+            <p class="journey-stop-desc">Ensino médio e graduação em Agronomia no IFTO.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">2</span>
+            <div class="journey-stop-place">Imperatriz, MA</div>
+            <div class="journey-stop-year">2020 – 2021</div>
+            <p class="journey-stop-desc">Consultor técnico pelo SENAR.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">3</span>
+            <div class="journey-stop-place">Darcinópolis, TO</div>
+            <div class="journey-stop-year">2021 – 2022</div>
+            <p class="journey-stop-desc">Gerente de fazenda.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num">4</span>
+            <div class="journey-stop-place">Viçosa, MG</div>
+            <div class="journey-stop-year">2022 – atual</div>
+            <p class="journey-stop-desc">Mestrado e doutorado em Genética e Melhoramento na UFV.</p>
+          </div>
+          <div class="journey-stop">
+            <span class="journey-stop-num usa">5</span>
+            <div class="journey-stop-place">Urbana-Champaign, IL, EUA</div>
+            <div class="journey-stop-year">2026 – atual</div>
+            <p class="journey-stop-desc">Doutorado sanduíche em modelos de predição genômica com informações ambientais.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<script>
+  function setLanguage(lang) {
+    document.body.setAttribute('data-lang', lang);
+    localStorage.setItem('preferredLanguage', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  }
+  window.addEventListener('DOMContentLoaded', function () {
+    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLang);
+    document.querySelectorAll('nav a[data-page="about"]').forEach(a => a.classList.add('active-page'));
+  });
+</script>
+
+<script>
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+<script src="/particles.js"></script>
+<script src="/assets/vendor/d3-array.min.js"></script>
+<script src="/assets/vendor/d3-geo.min.js"></script>
+<script src="/assets/vendor/topojson-client.min.js"></script>
+<script src="/worldmap.js"></script>
+</body>
+</html>
