@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | João Amario</title>
+  <meta name="description" content="Get in touch with João Amario, Ph.D. candidate in Genetics and Plant Breeding at UFV.">
+  <meta name="author" content="João Marcos Amario de Sousa">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="João Amario">
+  <meta property="og:title" content="Contact | João Amario">
+  <meta property="og:description" content="Get in touch with João Amario, Ph.D. candidate in Genetics and Plant Breeding at UFV.">
+  <meta property="og:url" content="https://amario17.github.io/contact/">
+  <meta property="og:image" content="https://amario17.github.io/assets/perfil.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    /* Page transition: reveal the new page with a circle growing from the clicked link */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="/"]');
+        if (a) { try { sessionStorage.setItem('vt-origin', e.clientX + ',' + e.clientY); } catch (_) {} }
+      });
+      window.addEventListener('pagereveal', function (e) {
+        if (!e.viewTransition) return;
+        document.documentElement.classList.add('vt-nav');
+        var o = null;
+        try { o = sessionStorage.getItem('vt-origin'); sessionStorage.removeItem('vt-origin'); } catch (_) {}
+        var xy = o ? o.split(',').map(Number) : [innerWidth / 2, 0];
+        var r = Math.hypot(Math.max(xy[0], innerWidth - xy[0]), Math.max(xy[1], innerHeight - xy[1]));
+        e.viewTransition.ready.then(function () {
+          document.documentElement.animate({
+            clipPath: ['circle(0px at ' + xy[0] + 'px ' + xy[1] + 'px)',
+                       'circle(' + r + 'px at ' + xy[0] + 'px ' + xy[1] + 'px)']
+          }, { duration: 750, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' });
+        });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://amario17.github.io/contact/">
+</head>
+<body data-page="contact">
+<canvas class="particles-canvas particles-fixed" data-mode="fixed" aria-hidden="true"></canvas>
+<header>
+  <nav>
+    <div class="nav-brand">
+      <h1>João Amario</h1>
+      <p class="lang-en">Ph.D. Candidate in Genetics and Plant Breeding</p>
+      <p class="lang-pt">Doutorando em Genética e Melhoramento</p>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/" data-page="index"><span class="lang-en">Home</span><span class="lang-pt">Início</span></a></li>
+        <li><a href="/research/" data-page="research"><span class="lang-en">Research</span><span class="lang-pt">Pesquisa</span></a></li>
+        <li><a href="/projects/" data-page="projects"><span class="lang-en">Tools</span><span class="lang-pt">Ferramentas</span></a></li>
+        <li><a href="/assessments/" data-page="assessments"><span class="lang-en">Assessments</span><span class="lang-pt">Avaliações</span></a></li>
+        <li><a href="/about/" data-page="about"><span class="lang-en">About</span><span class="lang-pt">Sobre</span></a></li>
+        <li><a href="/contact/" data-page="contact"><span class="lang-en">Contact</span><span class="lang-pt">Contacto</span></a></li>
+      </ul>
+      <div class="language-switcher">
+        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+        <button onclick="setLanguage('pt')" id="btn-pt">PT</button>
+      </div>
+      <a class="nav-cv-btn lang-en" href="/assets/joao_amario_cv.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Download CV</span>
+      </a>
+      <a class="nav-cv-btn lang-pt" href="/assets/joao_amario_cv_pt.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Baixar Currículo</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <div class="page-banner">
+    <p class="eyebrow lang-en">Contact</p>
+    <p class="eyebrow lang-pt">Contato</p>
+    <h2 class="lang-en">Get in Touch</h2>
+    <h2 class="lang-pt">Entre em Contato</h2>
+  </div>
+
+
+<div class="card contact-card" style="margin: 2.5rem 0 0;">
+    <h2 class="lang-en">Send a Message</h2>
+    <h2 class="lang-pt">Enviar Mensagem</h2>
+    <p class="lang-en" style="margin-top: 1rem;">The best way to reach me is by email, feel free to write anytime.</p>
+    <p class="lang-pt" style="margin-top: 1rem;">A melhor forma de me contatar é por e-mail, fique à vontade para escrever a qualquer momento.</p>
+    <p style="margin-top: 1.5rem; font-size: 1.1rem;"><a href="mailto:joao.m.sousa@ufv.br">joao.m.sousa@ufv.br</a></p>
+  </div>
+</main>
+
+<script>
+  function setLanguage(lang) {
+    document.body.setAttribute('data-lang', lang);
+    localStorage.setItem('preferredLanguage', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  }
+  window.addEventListener('DOMContentLoaded', function () {
+    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLang);
+    document.querySelectorAll('nav a[data-page="contact"]').forEach(a => a.classList.add('active-page'));
+  });
+</script>
+<script src="/particles.js"></script>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-copy lang-en">&copy; 2026 João Amario. All rights reserved.</div>
+      <div class="footer-copy lang-pt">&copy; 2026 João Amario. Todos os direitos reservados.</div>
+    </div>
+    <div class="footer-socials">
+      <!-- Email -->
+      <a class="footer-social-link" href="mailto:joao.m.sousa@ufv.br" title="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <!-- LinkedIn -->
+      <a class="footer-social-link" href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <!-- GitHub -->
+      <a class="footer-social-link" href="https://github.com/amario17" target="_blank" rel="noopener" title="GitHub">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <!-- Google Scholar -->
+      <a class="footer-social-link" href="https://scholar.google.com.br/citations?user=fx1_ebQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" title="Google Scholar">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+      </a>
+      <!-- ResearchGate -->
+      <a class="footer-social-link" href="https://www.researchgate.net/profile/Joao-Amario-De-Sousa-2" target="_blank" rel="noopener" title="ResearchGate">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.193 12.193 0 0 0-.368 3.12 21.27 21.27 0 0 0 .183 2.923c.26 1.58.822 2.854 1.687 3.816.863.963 2.065 1.445 3.605 1.445.857 0 1.63-.2 2.318-.598a4.318 4.318 0 0 0 1.6-1.64 4.91 4.91 0 0 0 .586-2.39 4.91 4.91 0 0 0-.586-2.392 4.318 4.318 0 0 0-1.6-1.64C23.06 4.504 22.286 4.305 21.43 4.305c-.64 0-1.224.13-1.75.388a3.545 3.545 0 0 0-1.274 1.073c.07-.786.236-1.407.5-1.864.26-.455.618-.683 1.073-.683.34 0 .612.096.818.29.204.192.356.476.455.852l2.226-.3c-.173-.844-.53-1.508-1.07-1.99C21.87.26 21.128.002 20.235 0zm-3.905 10.79v6.58h2.38v-6.58zm1.19-3.946a1.343 1.343 0 1 0 0 2.686 1.343 1.343 0 0 0 0-2.686zM0 0v24h14.47v-2.344H2.344V2.344h9.87V8.47h6.126V0z"/></svg>
+      </a>
+      <!-- ORCID -->
+      <a class="footer-social-link" href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener" title="ORCID">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

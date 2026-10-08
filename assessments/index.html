@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessments | João Amario</title>
+  <meta name="description" content="Working Genius results and self-assessment of João Amario, with a form to send feedback about working with him.">
+  <meta name="author" content="João Marcos Amario de Sousa">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="João Amario">
+  <meta property="og:title" content="Assessments | João Amario">
+  <meta property="og:description" content="Working Genius results and self-assessment of João Amario, with a form to send feedback about working with him.">
+  <meta property="og:url" content="https://amario17.github.io/assessments/">
+  <meta property="og:image" content="https://amario17.github.io/assets/perfil.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    /* Page transition: reveal the new page with a circle growing from the clicked link */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="/"]');
+        if (a) { try { sessionStorage.setItem('vt-origin', e.clientX + ',' + e.clientY); } catch (_) {} }
+      });
+      window.addEventListener('pagereveal', function (e) {
+        if (!e.viewTransition) return;
+        document.documentElement.classList.add('vt-nav');
+        var o = null;
+        try { o = sessionStorage.getItem('vt-origin'); sessionStorage.removeItem('vt-origin'); } catch (_) {}
+        var xy = o ? o.split(',').map(Number) : [innerWidth / 2, 0];
+        var r = Math.hypot(Math.max(xy[0], innerWidth - xy[0]), Math.max(xy[1], innerHeight - xy[1]));
+        e.viewTransition.ready.then(function () {
+          document.documentElement.animate({
+            clipPath: ['circle(0px at ' + xy[0] + 'px ' + xy[1] + 'px)',
+                       'circle(' + r + 'px at ' + xy[0] + 'px ' + xy[1] + 'px)']
+          }, { duration: 750, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' });
+        });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://amario17.github.io/assessments/">
+</head>
+<body data-page="assessments">
+<canvas class="particles-canvas particles-fixed" data-mode="fixed" aria-hidden="true"></canvas>
+<header>
+  <nav>
+    <div class="nav-brand">
+      <h1>João Amario</h1>
+      <p class="lang-en">Ph.D. Candidate in Genetics and Plant Breeding</p>
+      <p class="lang-pt">Doutorando em Genética e Melhoramento</p>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/" data-page="index"><span class="lang-en">Home</span><span class="lang-pt">Início</span></a></li>
+        <li><a href="/research/" data-page="research"><span class="lang-en">Research</span><span class="lang-pt">Pesquisa</span></a></li>
+        <li><a href="/projects/" data-page="projects"><span class="lang-en">Tools</span><span class="lang-pt">Ferramentas</span></a></li>
+        <li><a href="/assessments/" data-page="assessments"><span class="lang-en">Assessments</span><span class="lang-pt">Avaliações</span></a></li>
+        <li><a href="/about/" data-page="about"><span class="lang-en">About</span><span class="lang-pt">Sobre</span></a></li>
+        <li><a href="/contact/" data-page="contact"><span class="lang-en">Contact</span><span class="lang-pt">Contacto</span></a></li>
+      </ul>
+      <div class="language-switcher">
+        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+        <button onclick="setLanguage('pt')" id="btn-pt">PT</button>
+      </div>
+      <a class="nav-cv-btn lang-en" href="/assets/joao_amario_cv.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Download CV</span>
+      </a>
+      <a class="nav-cv-btn lang-pt" href="/assets/joao_amario_cv_pt.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Baixar Currículo</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <div class="page-banner">
+    <p class="eyebrow lang-en">Assessments</p>
+    <p class="eyebrow lang-pt">Avaliações</p>
+    <h2 class="lang-en">Working Genius <span class="amp">&amp;</span> Self-Assessments</h2>
+    <h2 class="lang-pt">Working Genius <span class="amp">&amp;</span> Autoavaliações</h2>
+  </div>
+
+  <!-- English -->
+  <div class="lang-en">
+    <section>
+      <h2>Working Genius</h2>
+      <p class="wg-intro">I completed <a href="https://www.workinggenius.com/" target="_blank" rel="noopener">The Table Group's Working Genius Assessment</a>, a model that identifies six types of genius required to accomplish any kind of work. Two are natural gifts that give me energy and joy (Working Genius), two are activities I can do reasonably well without being energized by them (Working Competency), and two drain my energy (Working Frustration). My pairing is <strong>ET | TE, The Loyal Finisher</strong>, combining Tenacity and Enablement. Hover, tap, or focus each gear below to explore the full model.</p>
+
+      <div class="wg-diagram">
+        <button type="button" class="wg-gear wg-frustration" data-type="Working Frustration" data-title="Wonder" data-desc="Pondering and asking questions, contemplating why things are the way they are, and thoughtfully observing the environment to imagine a different or better way. Almost every new initiative begins because someone wonders. This is a Working Frustration for me: I am not naturally gifted at it and do not derive energy or joy from pondering greater potential in a given situation.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">W</text>
+          </svg>
+          <span class="wg-gear-label">Wonder</span>
+          <span class="wg-gear-type">Frustration</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-competency" data-type="Working Competency" data-title="Invention" data-desc="Coming up with novel ideas and solutions to problems, involving creativity and original thinking, often with little direction, confident even when a problem has no apparent solution. This is a Working Competency for me: I am capable of it and do not mind creating original ideas, but it is not where I get my energy.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">I</text>
+          </svg>
+          <span class="wg-gear-label">Invention</span>
+          <span class="wg-gear-type">Competency</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-frustration" data-type="Working Frustration" data-title="Discernment" data-desc="Making sound judgments by relying on instinct and intuition rather than data or expertise, evaluating whether an idea is sound or needs more work. This is a Working Frustration for me: I am not naturally gifted at it and do not derive energy or joy from using intuition to evaluate ideas or plans.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">D</text>
+          </svg>
+          <span class="wg-gear-label">Discernment</span>
+          <span class="wg-gear-type">Frustration</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-competency" data-type="Working Competency" data-title="Galvanizing" data-desc="Rallying and motivating people around an idea, project, or initiative, inspiring and persuading others to take action, sometimes convincing them to rethink their plans. This is a Working Competency for me: I am capable of it and do not mind rallying people around ideas, projects, or tasks.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">G</text>
+          </svg>
+          <span class="wg-gear-label">Galvanizing</span>
+          <span class="wg-gear-type">Competency</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-genius" data-type="Working Genius" data-title="Enablement" data-desc="Answering the call to action and seamlessly providing others with the unconditional support and assistance they need, the human glue that holds a team together. This is one of my two Working Geniuses: I am naturally gifted at it and derive real energy and joy from providing others with encouragement and assistance for their projects and tasks.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">E</text>
+          </svg>
+          <span class="wg-gear-label">Enablement</span>
+          <span class="wg-gear-type">Genius</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-genius" data-type="Working Genius" data-title="Tenacity" data-desc="Execution: getting things done, pushing tasks and projects through to completion, and staying comfortable pushing through obstacles until results are achieved. This is one of my two Working Geniuses: I am naturally gifted at it and derive real energy and joy from crossing tasks off the list and delivering on what was promised.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">T</text>
+          </svg>
+          <span class="wg-gear-label">Tenacity</span>
+          <span class="wg-gear-type">Genius</span>
+        </button>
+      </div>
+
+      <div class="wg-detail" id="wgDetailEn" data-default-type="Working Genius Pairing, ET | TE" data-default-title="The Loyal Finisher, Tenacity and Enablement" data-default-desc="I derive joy and energy from completing tasks and responding to the needs of others in the pursuit of getting things done. I am quick to answer the call to action, equally valuing responsiveness and reliability. I am a low-maintenance contributor who holds myself accountable for delivering on my promises, though I have a hard time saying no to requests and can find myself over-committed, prone to burnout and to feeling underappreciated.">
+        <span class="wg-detail-type">Working Genius Pairing, ET | TE</span>
+        <div class="wg-detail-title">The Loyal Finisher, Tenacity and Enablement</div>
+        <p class="wg-detail-desc">I derive joy and energy from completing tasks and responding to the needs of others in the pursuit of getting things done. I am quick to answer the call to action, equally valuing responsiveness and reliability. I am a low-maintenance contributor who holds myself accountable for delivering on my promises, though I have a hard time saying no to requests and can find myself over-committed, prone to burnout and to feeling underappreciated.</p>
+      </div>
+
+      <div class="wg-legend">
+        <span><i class="lg-genius"></i> Genius, my natural gifts</span>
+        <span><i class="lg-competency"></i> Competency, capable but not energizing</span>
+        <span><i class="lg-frustration"></i> Frustration, drains my energy</span>
+      </div>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>How I See Myself</h2>
+      <p>I see myself very much in the Loyal Finisher profile. This is how the six types of genius play out in my daily work.</p>
+
+      <div class="sa-grid">
+        <div class="sa-card sa-energy">
+          <span class="sa-label">Gives me energy</span>
+          <h3>Tenacity &amp; Enablement</h3>
+          <ul>
+            <li>Seeing things move from idea to done: a published paper, a delivered analysis, a working tool.</li>
+            <li>Being the person colleagues turn to, whether it is getting code to run, reviewing an analysis or sharing the load on a task.</li>
+            <li>Responding quickly and being someone others can count on.</li>
+          </ul>
+        </div>
+        <div class="sa-card sa-neutral">
+          <span class="sa-label">I do it well, but it does not energize me</span>
+          <h3>Invention &amp; Galvanizing</h3>
+          <ul>
+            <li>Coming up with new solutions when a problem calls for it.</li>
+            <li>Rallying people and getting a team moving on a project.</li>
+          </ul>
+        </div>
+        <div class="sa-card sa-drain">
+          <span class="sa-label">Wears me out</span>
+          <h3>Wonder &amp; Discernment</h3>
+          <ul>
+            <li>Long abstract phases, speculating without a clear path forward.</li>
+            <li>Judging ideas on intuition alone, without data or criteria to lean on.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The same profile points to something I have been working on: saying no. Because I want to help and deliver on everything, I sometimes take on more than I should. I have been learning to prioritize better, agree on realistic deadlines and ask for clarity early on, so that my effort goes where it truly makes a difference.</p>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>Feedback About Me</h2>
+      <p>Self-assessments only tell half of the story. The other half comes from the people I work with. If we have worked, studied or collaborated together in any way, I would really appreciate your honest feedback: what I do well, what I could do better, and anything you think would help me grow. Your name and email are optional, so you can write anonymously if you prefer.</p>
+
+      <form class="feedback-form card" novalidate>
+        <div class="fb-row">
+          <label class="fb-field">
+            <span>Name <em>(optional)</em></span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label class="fb-field">
+            <span>Email <em>(optional, if you would like a reply)</em></span>
+            <input type="email" name="email" autocomplete="email">
+          </label>
+        </div>
+        <label class="fb-field">
+          <span>How do we know each other? <em>(optional)</em></span>
+          <select name="relationship">
+            <option value="">Choose one</option>
+            <option>Colleague or labmate</option>
+            <option>Advisor or professor</option>
+            <option>Student or mentee</option>
+            <option>Collaborator or co-author</option>
+            <option>Industry partner</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="fb-field">
+          <span>Your feedback</span>
+          <textarea name="message" rows="6" required placeholder="What do I do well? What could I improve?"></textarea>
+        </label>
+        <input type="text" name="_honey" class="fb-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fb-actions">
+          <button type="submit" class="fb-submit">Send feedback</button>
+          <p class="fb-status" role="status" aria-live="polite"
+             data-sending="Sending..." data-ok="Thank you! Your feedback was sent." data-error="Something went wrong. Please try again, or email me directly." data-empty="Please write your feedback before sending."></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Portuguese -->
+  <div class="lang-pt">
+    <section>
+      <h2>Working Genius</h2>
+      <p class="wg-intro">Fiz o <a href="https://www.workinggenius.com/" target="_blank" rel="noopener">Working Genius Assessment, do The Table Group</a>, um modelo que identifica seis tipos de genialidade necessários para realizar qualquer tipo de trabalho. Dois deles são dons naturais que me trazem energia e alegria (Working Genius), dois são atividades que consigo fazer razoavelmente bem sem me energizar (Working Competency), e dois drenam minha energia (Working Frustration). Minha combinação é a <strong>ET | TE, O Finalizador Leal</strong> (The Loyal Finisher), unindo Tenacity e Enablement. Passe o mouse, toque ou dê foco em cada engrenagem abaixo para explorar o modelo completo.</p>
+
+      <div class="wg-diagram">
+        <button type="button" class="wg-gear wg-frustration" data-type="Working Frustration" data-title="Wonder" data-desc="Refletir e fazer perguntas, contemplando por que as coisas são como são, e observar o ambiente com atenção para imaginar um jeito diferente ou melhor. Quase toda nova iniciativa começa porque alguém se questiona. Essa é uma Working Frustration para mim: não sou naturalmente talentoso nisso e não tiro energia ou alegria de refletir sobre o potencial maior de uma situação.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">W</text>
+          </svg>
+          <span class="wg-gear-label">Wonder</span>
+          <span class="wg-gear-type">Frustração</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-competency" data-type="Working Competency" data-title="Invention" data-desc="Criar ideias e soluções originais para problemas, envolvendo criatividade e pensamento original, muitas vezes com pouca direção, com confiança mesmo quando um problema não tem solução aparente. Essa é uma Working Competency para mim: sou capaz disso e não me incomodo em criar ideias originais, mas não é dali que tiro minha energia.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">I</text>
+          </svg>
+          <span class="wg-gear-label">Invention</span>
+          <span class="wg-gear-type">Competência</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-frustration" data-type="Working Frustration" data-title="Discernment" data-desc="Fazer julgamentos sólidos usando instinto e intuição, em vez de dados ou expertise, avaliando se uma ideia é boa ou precisa de mais ajustes. Essa é uma Working Frustration para mim: não sou naturalmente talentoso nisso e não tiro energia ou alegria de usar intuição para avaliar ideias ou planos.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">D</text>
+          </svg>
+          <span class="wg-gear-label">Discernment</span>
+          <span class="wg-gear-type">Frustração</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-competency" data-type="Working Competency" data-title="Galvanizing" data-desc="Mobilizar e motivar pessoas em torno de uma ideia, projeto ou iniciativa, inspirando e persuadindo outros a agir, às vezes convencendo-os a repensar seus planos. Essa é uma Working Competency para mim: sou capaz disso e não me incomodo em mobilizar pessoas em torno de ideias, projetos ou tarefas.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">G</text>
+          </svg>
+          <span class="wg-gear-label">Galvanizing</span>
+          <span class="wg-gear-type">Competência</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-genius" data-type="Working Genius" data-title="Enablement" data-desc="Responder ao chamado e oferecer, sem atrito, o apoio incondicional e a assistência que os outros precisam, a cola humana que mantém uma equipe unida. Essa é uma das minhas duas Working Genius: sou naturalmente talentoso nisso e tiro energia e alegria reais ao oferecer incentivo e assistência aos projetos e tarefas dos outros.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">E</text>
+          </svg>
+          <span class="wg-gear-label">Enablement</span>
+          <span class="wg-gear-type">Genius</span>
+        </button>
+
+        <button type="button" class="wg-gear wg-genius" data-type="Working Genius" data-title="Tenacity" data-desc="Execução: fazer as coisas acontecerem, levando tarefas e projetos até a conclusão, e permanecendo confortável ao superar obstáculos até que os resultados sejam alcançados. Essa é uma das minhas duas Working Genius: sou naturalmente talentoso nisso e tiro energia e alegria reais ao riscar tarefas da lista e entregar o que foi prometido.">
+          <svg class="wg-gear-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g fill="currentColor">
+              <rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/>
+              <rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/>
+              <rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/>
+              <rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/>
+              <circle cx="50" cy="50" r="33"/>
+            </g>
+            <circle cx="50" cy="50" r="23" fill="#fff"/>
+            <text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="currentColor">T</text>
+          </svg>
+          <span class="wg-gear-label">Tenacity</span>
+          <span class="wg-gear-type">Genius</span>
+        </button>
+      </div>
+
+      <div class="wg-detail" id="wgDetailPt" data-default-type="Combinação Working Genius, ET | TE" data-default-title="O Finalizador Leal, Tenacity e Enablement" data-default-desc="Tenho alegria e energia ao completar tarefas e responder às necessidades dos outros na busca por fazer as coisas acontecerem. Respondo rápido ao chamado, valorizando igualmente responsividade e confiabilidade. Sou um colaborador de baixa manutenção que se responsabiliza por cumprir suas promessas, embora tenha dificuldade em dizer não a pedidos e possa acabar sobrecarregado, propenso a esgotamento e a se sentir subvalorizado.">
+        <span class="wg-detail-type">Combinação Working Genius, ET | TE</span>
+        <div class="wg-detail-title">O Finalizador Leal, Tenacity e Enablement</div>
+        <p class="wg-detail-desc">Tenho alegria e energia ao completar tarefas e responder às necessidades dos outros na busca por fazer as coisas acontecerem. Respondo rápido ao chamado, valorizando igualmente responsividade e confiabilidade. Sou um colaborador de baixa manutenção que se responsabiliza por cumprir suas promessas, embora tenha dificuldade em dizer não a pedidos e possa acabar sobrecarregado, propenso a esgotamento e a se sentir subvalorizado.</p>
+      </div>
+
+      <div class="wg-legend">
+        <span><i class="lg-genius"></i> Genius, meus dons naturais</span>
+        <span><i class="lg-competency"></i> Competency, capaz mas não energizante</span>
+        <span><i class="lg-frustration"></i> Frustration, drena minha energia</span>
+      </div>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>Como Eu Me Vejo</h2>
+      <p>Eu me reconheço muito no perfil de Loyal Finisher. É assim que os seis tipos de genialidade aparecem no meu dia a dia de trabalho.</p>
+
+      <div class="sa-grid">
+        <div class="sa-card sa-energy">
+          <span class="sa-label">Me dá energia</span>
+          <h3>Tenacity &amp; Enablement</h3>
+          <ul>
+            <li>Ver as coisas saírem do papel e chegarem ao fim: um artigo publicado, uma análise entregue, uma ferramenta funcionando.</li>
+            <li>Ser a pessoa a quem os colegas recorrem, seja para destravar um código, revisar uma análise ou dividir uma tarefa.</li>
+            <li>Responder rápido e ser alguém com quem os outros podem contar.</li>
+          </ul>
+        </div>
+        <div class="sa-card sa-neutral">
+          <span class="sa-label">Faço bem, mas não me energiza</span>
+          <h3>Invention &amp; Galvanizing</h3>
+          <ul>
+            <li>Criar soluções novas quando o problema pede.</li>
+            <li>Mobilizar pessoas e colocar uma equipe em movimento num projeto.</li>
+          </ul>
+        </div>
+        <div class="sa-card sa-drain">
+          <span class="sa-label">Me desgasta</span>
+          <h3>Wonder &amp; Discernment</h3>
+          <ul>
+            <li>Fases muito abstratas, de ficar especulando sem um caminho claro.</li>
+            <li>Avaliar ideias só pela intuição, sem dados ou critérios em que me apoiar.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Esse mesmo perfil traz um ponto que venho trabalhando: a dificuldade de dizer não. Por querer ajudar e cumprir tudo, às vezes assumo mais do que deveria. Tenho aprendido a priorizar melhor, combinar prazos realistas e pedir clareza logo no início, para que meu esforço vá para onde realmente faz diferença.</p>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>Feedback Sobre Mim</h2>
+      <p>As autoavaliações contam só metade da história. A outra metade vem das pessoas com quem eu trabalho. Se já trabalhamos, estudamos ou colaboramos juntos de alguma forma, eu agradeceria muito o seu feedback sincero: o que eu faço bem, o que eu poderia melhorar e qualquer coisa que você ache que me ajudaria a crescer. Nome e e-mail são opcionais, então você pode escrever de forma anônima se preferir.</p>
+
+      <form class="feedback-form card" novalidate>
+        <div class="fb-row">
+          <label class="fb-field">
+            <span>Nome <em>(opcional)</em></span>
+            <input type="text" name="name" autocomplete="name">
+          </label>
+          <label class="fb-field">
+            <span>E-mail <em>(opcional, se quiser uma resposta)</em></span>
+            <input type="email" name="email" autocomplete="email">
+          </label>
+        </div>
+        <label class="fb-field">
+          <span>De onde nos conhecemos? <em>(opcional)</em></span>
+          <select name="relationship">
+            <option value="">Escolha uma opção</option>
+            <option>Colega de trabalho ou de laboratório</option>
+            <option>Orientador ou professor</option>
+            <option>Aluno ou orientado</option>
+            <option>Colaborador ou coautor</option>
+            <option>Parceiro da indústria</option>
+            <option>Outro</option>
+          </select>
+        </label>
+        <label class="fb-field">
+          <span>Seu feedback</span>
+          <textarea name="message" rows="6" required placeholder="O que eu faço bem? O que eu poderia melhorar?"></textarea>
+        </label>
+        <input type="text" name="_honey" class="fb-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="fb-actions">
+          <button type="submit" class="fb-submit">Enviar feedback</button>
+          <p class="fb-status" role="status" aria-live="polite"
+             data-sending="Enviando..." data-ok="Obrigado! Seu feedback foi enviado." data-error="Algo deu errado. Tente novamente ou me envie um e-mail diretamente." data-empty="Escreva seu feedback antes de enviar."></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+</main>
+
+<script>
+  function setLanguage(lang) {
+    document.body.setAttribute('data-lang', lang);
+    localStorage.setItem('preferredLanguage', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  }
+  window.addEventListener('DOMContentLoaded', function () {
+    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLang);
+    document.querySelectorAll('nav a[data-page="assessments"]').forEach(a => a.classList.add('active-page'));
+  });
+
+  function wgShow(el, detailId) {
+    var detail = document.getElementById(detailId);
+    detail.querySelector('.wg-detail-type').textContent = el.dataset.type;
+    detail.querySelector('.wg-detail-title').textContent = el.dataset.title;
+    detail.querySelector('.wg-detail-desc').textContent = el.dataset.desc;
+    var color = getComputedStyle(el).getPropertyValue('--wg-color');
+    detail.style.setProperty('--wg-detail-color', color);
+  }
+  function wgReset(detailId) {
+    var detail = document.getElementById(detailId);
+    detail.querySelector('.wg-detail-type').textContent = detail.dataset.defaultType;
+    detail.querySelector('.wg-detail-title').textContent = detail.dataset.defaultTitle;
+    detail.querySelector('.wg-detail-desc').textContent = detail.dataset.defaultDesc;
+    detail.style.removeProperty('--wg-detail-color');
+  }
+  document.querySelectorAll('.lang-en .wg-gear').forEach(function (g) {
+    g.addEventListener('mouseenter', function () { wgShow(g, 'wgDetailEn'); });
+    g.addEventListener('mouseleave', function () { wgReset('wgDetailEn'); });
+    g.addEventListener('focus', function () { wgShow(g, 'wgDetailEn'); });
+    g.addEventListener('blur', function () { wgReset('wgDetailEn'); });
+    g.addEventListener('click', function () { wgShow(g, 'wgDetailEn'); });
+  });
+  document.querySelectorAll('.lang-pt .wg-gear').forEach(function (g) {
+    g.addEventListener('mouseenter', function () { wgShow(g, 'wgDetailPt'); });
+    g.addEventListener('mouseleave', function () { wgReset('wgDetailPt'); });
+    g.addEventListener('focus', function () { wgShow(g, 'wgDetailPt'); });
+    g.addEventListener('blur', function () { wgReset('wgDetailPt'); });
+    g.addEventListener('click', function () { wgShow(g, 'wgDetailPt'); });
+  });
+</script>
+<script>
+  /* Feedback form: posted to FormSubmit, which forwards it to my email */
+  (function () {
+    const ENDPOINT = 'https://formsubmit.co/ajax/joao.m.sousa@ufv.br';
+    const RELAY = { name: 'Name', email: 'Email', relationship: 'Relationship', message: 'Feedback' };
+
+    document.querySelectorAll('.feedback-form').forEach(function (form) {
+      const status = form.querySelector('.fb-status');
+      const button = form.querySelector('.fb-submit');
+      const f = form.elements;
+      function say(key, kind) {
+        status.textContent = status.dataset[key];
+        status.className = 'fb-status' + (kind ? ' ' + kind : '');
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (f._honey.value) return;                       // filled in by a bot
+        if (!f.message.value.trim()) { say('empty', 'error'); f.message.focus(); return; }
+
+        const data = { _subject: 'New feedback from your website', _template: 'table', _captcha: 'false' };
+        Object.keys(RELAY).forEach(function (k) {
+          const v = f[k].value.trim();
+          if (v) data[RELAY[k]] = v;
+        });
+        if (f.email.value.trim()) data._replyto = f.email.value.trim();
+
+        button.disabled = true;
+        say('sending');
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(function (r) { return r.json().then(function (j) { return r.ok && String(j.success) === 'true'; }); })
+          .then(function (ok) {
+            if (ok) { form.reset(); say('ok', 'ok'); } else { say('error', 'error'); }
+          })
+          .catch(function () { say('error', 'error'); })
+          .then(function () { button.disabled = false; });
+      });
+    });
+  })();
+</script>
+<script src="/particles.js"></script>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-copy lang-en">&copy; 2026 João Amario. All rights reserved.</div>
+      <div class="footer-copy lang-pt">&copy; 2026 João Amario. Todos os direitos reservados.</div>
+    </div>
+    <div class="footer-socials">
+      <a class="footer-social-link" href="mailto:joao.m.sousa@ufv.br" title="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://github.com/amario17" target="_blank" rel="noopener" title="GitHub">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://scholar.google.com.br/citations?user=fx1_ebQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" title="Google Scholar">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.researchgate.net/profile/Joao-Amario-De-Sousa-2" target="_blank" rel="noopener" title="ResearchGate">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.193 12.193 0 0 0-.368 3.12 21.27 21.27 0 0 0 .183 2.923c.26 1.58.822 2.854 1.687 3.816.863.963 2.065 1.445 3.605 1.445.857 0 1.63-.2 2.318-.598a4.318 4.318 0 0 0 1.6-1.64 4.91 4.91 0 0 0 .586-2.39 4.91 4.91 0 0 0-.586-2.392 4.318 4.318 0 0 0-1.6-1.64C23.06 4.504 22.286 4.305 21.43 4.305c-.64 0-1.224.13-1.75.388a3.545 3.545 0 0 0-1.274 1.073c.07-.786.236-1.407.5-1.864.26-.455.618-.683 1.073-.683.34 0 .612.096.818.29.204.192.356.476.455.852l2.226-.3c-.173-.844-.53-1.508-1.07-1.99C21.87.26 21.128.002 20.235 0zm-3.905 10.79v6.58h2.38v-6.58zm1.19-3.946a1.343 1.343 0 1 0 0 2.686 1.343 1.343 0 0 0 0-2.686zM0 0v24h14.47v-2.344H2.344V2.344h9.87V8.47h6.126V0z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener" title="ORCID">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

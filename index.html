@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>João Amario | Ph.D. Candidate in Genetics and Plant Breeding</title>
+  <meta name="description" content="João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding at the Federal University of Viçosa (UFV), working on genomic prediction, mixed models and environmental data to predict genotype performance in untested environments.">
+  <meta name="author" content="João Marcos Amario de Sousa">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="João Amario">
+  <meta property="og:title" content="João Amario | Ph.D. Candidate in Genetics and Plant Breeding">
+  <meta property="og:description" content="João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding at the Federal University of Viçosa (UFV), working on genomic prediction, mixed models and environmental data to predict genotype performance in untested environments.">
+  <meta property="og:url" content="https://amario17.github.io/">
+  <meta property="og:image" content="https://amario17.github.io/assets/perfil.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "João Marcos Amario de Sousa",
+    "alternateName": "João Amario",
+    "url": "https://amario17.github.io/",
+    "image": "https://amario17.github.io/assets/perfil.jpg",
+    "jobTitle": "Ph.D. Candidate in Genetics and Plant Breeding",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Universidade Federal de Viçosa (UFV)" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Universidade Federal de Viçosa (UFV)" },
+      { "@type": "CollegeOrUniversity", "name": "Instituto Federal do Tocantins (IFTO)" }
+    ],
+    "knowsAbout": ["Quantitative genetics", "Plant breeding", "Genomic prediction", "Mixed models", "Genotype by environment interaction", "Statistical learning"],
+    "sameAs": [
+      "https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/",
+      "https://github.com/amario17",
+      "https://orcid.org/0009-0002-5102-7142",
+      "https://scholar.google.com.br/citations?user=fx1_ebQAAAAJ",
+      "https://www.researchgate.net/profile/Joao-Amario-De-Sousa-2"
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    /* Page transition: reveal the new page with a circle growing from the clicked link */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="/"]');
+        if (a) { try { sessionStorage.setItem('vt-origin', e.clientX + ',' + e.clientY); } catch (_) {} }
+      });
+      window.addEventListener('pagereveal', function (e) {
+        if (!e.viewTransition) return;
+        document.documentElement.classList.add('vt-nav');
+        var o = null;
+        try { o = sessionStorage.getItem('vt-origin'); sessionStorage.removeItem('vt-origin'); } catch (_) {}
+        var xy = o ? o.split(',').map(Number) : [innerWidth / 2, 0];
+        var r = Math.hypot(Math.max(xy[0], innerWidth - xy[0]), Math.max(xy[1], innerHeight - xy[1]));
+        e.viewTransition.ready.then(function () {
+          document.documentElement.animate({
+            clipPath: ['circle(0px at ' + xy[0] + 'px ' + xy[1] + 'px)',
+                       'circle(' + r + 'px at ' + xy[0] + 'px ' + xy[1] + 'px)']
+          }, { duration: 750, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' });
+        });
+      });
+    })();
+  </script>
+  <link rel="canonical" href="https://amario17.github.io/">
+  <style>
+    /* ── Page base ── */
+    html, body { height: 100%; }
+
+    body[data-page="index"] {
+      background: var(--bg-base);
+      overflow-x: hidden;
+    }
+
+    /* ── Fixed nav (colors now come from the global teal header in style.css) ── */
+    body[data-page="index"] header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+    }
+
+    /* ── Main ── */
+    body[data-page="index"] main {
+      max-width: 100%;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+    }
+
+    /* ══════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════ */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      overflow: hidden;
+      padding-top: 8rem;
+    }
+
+    /* Light background */
+    .hero-section::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: var(--bg-base);
+    }
+
+    /* Floating dots and DNA/RNA fragments behind the awards */
+    .awards-wrap { position: relative; overflow: hidden; }
+    .awards-wrap > section { position: relative; z-index: 1; }
+    .awards-particles {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    /* Animated DNA helix of particles behind the hero content */
+    .hero-particles {
+      position: absolute; inset: 0; z-index: 1;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeIn 1.6s ease 0.3s forwards;
+    }
+
+    /* ── Inner content ── */
+    .hero-inner {
+      position: relative; z-index: 3;
+      max-width: 70rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 3rem 3.5rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5rem;
+    }
+
+    /* ══════════════════════════════════════
+       LEFT - PHOTO
+    ══════════════════════════════════════ */
+    .hero-photo-col {
+      flex-shrink: 0;
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      width: 16.875rem;
+      height: 16.875rem;
+    }
+
+    /* Outer slow-pulsing glow ring */
+    .hero-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      background: conic-gradient(
+        rgba(107,44,31,0.35) 0deg,
+        rgba(11,110,87,0.25) 120deg,
+        rgba(107,44,31,0.35) 240deg,
+        rgba(107,44,31,0.15) 360deg
+      );
+      border-radius: 50%;
+      animation: rotateConic 8s linear infinite;
+      filter: blur(10px);
+    }
+
+    /* Spinning dashed border */
+    .hero-photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(11,110,87,0.35);
+      animation: spinRing 20s linear infinite;
+    }
+
+    @keyframes spinRing    { to { transform: rotate(360deg); } }
+    @keyframes rotateConic { to { transform: rotate(360deg); } }
+
+    .hero-photo-frame img {
+      width: 16.875rem;
+      height: 16.875rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      position: relative;
+      z-index: 1;
+      border: 2.5px solid rgba(107,44,31,0.18);
+      box-shadow:
+        0 0 0 8px rgba(107,44,31,0.08),
+        0 24px 60px rgba(107,44,31,0.15);
+      transition: transform 0.4s ease;
+    }
+
+    .hero-photo-frame img:hover { transform: scale(1.03); }
+
+    /* ── Accent badge below photo ── */
+    .hero-badge {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: rgba(107,44,31,0.10);
+      border: 1px solid rgba(107,44,31,0.28);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      width: fit-content;
+      margin-left: auto; margin-right: auto;
+    }
+
+    .hero-badge-dot {
+      width: 0.375rem; height: 0.375rem;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-badge span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════
+       RIGHT - TEXT
+    ══════════════════════════════════════ */
+    /* Column is as wide as its widest line (the tags row); the
+       description and icon row stretch to match it. */
+    .hero-text-col {
+      flex: 0 1 auto;
+      width: fit-content;
+      min-width: 0;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 1rem;
+      align-items: center;
+      gap: 0.7rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+
+    body[data-lang="en"] .hero-eyebrow.lang-en,
+    body[data-lang="pt"] .hero-eyebrow.lang-pt {
+      display: flex;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 1.375rem; height: 1.5px;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      line-height: 1.08;
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .hero-name span {
+      background: linear-gradient(135deg, var(--sky), var(--sky-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      width: 0;
+      min-width: 100%;
+      text-align: justify;
+      hyphens: auto;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    /* Tags row */
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.38s both;
+    }
+    .hero-tag {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      letter-spacing: 0.02em;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .hero-tag:hover {
+      color: var(--sky);
+      border-color: rgba(11,110,87,0.3);
+      background: var(--sky-pale);
+    }
+
+    /* CTA buttons */
+    .hero-cta {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.48s both;
+    }
+
+    .hero-cta a:not(.hero-social-btn) {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.72rem 1.65rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: var(--sky);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(11,110,87,0.35);
+    }
+    .btn-primary:hover {
+      background: #0a4536;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(11,110,87,0.45);
+    }
+
+    .btn-ghost {
+      background: var(--bg-surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      background: var(--bg-surface-3);
+      color: var(--text-primary);
+      border-color: var(--border-mid);
+      transform: translateY(-2px);
+    }
+
+    /* ── Divider + stats row at bottom ── */
+    .hero-divider-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 3rem 0 0;
+    }
+
+    /* ── Scroll cue ── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s both;
+    }
+    .scroll-cue-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .scroll-cue-line {
+      width: 1px; height: 2rem;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%,100% { transform: scaleY(1); opacity: 0.3; }
+      50%      { transform: scaleY(1.2); opacity: 0.7; }
+    }
+
+    /* ── Hero social buttons ── */
+    .hero-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.625rem;
+      height: 2.625rem;
+      border-radius: 10px;
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.22s ease;
+      flex-shrink: 0;
+    }
+    .hero-social-btn svg {
+      width: 1.0625rem; height: 1.0625rem;
+      fill: currentColor;
+    }
+    .hero-social-btn:hover {
+      background: var(--sky-pale);
+      border-color: rgba(11,110,87,0.4);
+      color: var(--sky);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(11,110,87,0.18);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── Responsive ── */
+    @media (max-width: 820px) {
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 6rem 2rem 4rem;
+        gap: 2.5rem;
+      }
+      .hero-text-col { width: 100%; max-width: 34rem; }
+      .hero-eyebrow, .hero-tags { justify-content: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-photo-frame { width: 12.5rem; height: 12.5rem; }
+      .hero-photo-frame img { width: 12.5rem; height: 12.5rem; }
+    }
+  </style>
+</head>
+<body data-page="index">
+<header>
+  <nav>
+    <div class="nav-brand">
+      <h1>João Amario</h1>
+      <p class="lang-en">Ph.D. Candidate in Genetics and Plant Breeding</p>
+      <p class="lang-pt">Doutorando em Genética e Melhoramento</p>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-right').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/" data-page="index"><span class="lang-en">Home</span><span class="lang-pt">Início</span></a></li>
+        <li><a href="/research/" data-page="research"><span class="lang-en">Research</span><span class="lang-pt">Pesquisa</span></a></li>
+        <li><a href="/projects/" data-page="projects"><span class="lang-en">Tools</span><span class="lang-pt">Ferramentas</span></a></li>
+        <li><a href="/assessments/" data-page="assessments"><span class="lang-en">Assessments</span><span class="lang-pt">Avaliações</span></a></li>
+        <li><a href="/about/" data-page="about"><span class="lang-en">About</span><span class="lang-pt">Sobre</span></a></li>
+        <li><a href="/contact/" data-page="contact"><span class="lang-en">Contact</span><span class="lang-pt">Contacto</span></a></li>
+      </ul>
+      <div class="language-switcher">
+        <button onclick="setLanguage('en')" id="btn-en">EN</button>
+        <button onclick="setLanguage('pt')" id="btn-pt">PT</button>
+      </div>
+      <a class="nav-cv-btn lang-en" href="/assets/joao_amario_cv.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Download CV</span>
+      </a>
+      <a class="nav-cv-btn lang-pt" href="/assets/joao_amario_cv_pt.pdf" download>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10.59l3.3-3.3 1.4 1.42L12 17.83l-4.7-4.7 1.4-1.42 3.3 3.3V3h2zM5 19h14v2H5v-2z"/></svg>
+        <span>Baixar Currículo</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero-section">
+    <canvas class="hero-particles dna-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-inner">
+
+      <!-- LEFT: Photo -->
+      <div class="hero-photo-col">
+        <div class="hero-photo-frame">
+          <img src="/assets/perfil.jpg" alt="João Amario">
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="lang-en">Open to collaborate</span>
+          <span class="lang-pt">Aberto a colaboração</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Text -->
+      <div class="hero-text-col">
+
+        <p class="hero-eyebrow lang-en">From the field to data-driven plant breeding</p>
+        <p class="hero-eyebrow lang-pt">Do campo ao melhoramento guiado por dados</p>
+
+        <h1 class="hero-name lang-en">Hi there!</h1>
+        <h1 class="hero-name lang-pt">Olá!</h1>
+
+        <p class="hero-desc lang-en">
+          Thanks for visiting my website, I'm happy you're here!
+          I'm João, an Agricultural Engineer and PhD candidate in Genetics
+          and Breeding at the Federal University of Viçosa (UFV), working on
+          quantitative genetics and statistical learning applied to plant
+          breeding, based at IDATA, UFV's Institute of Artificial and
+          Computational Intelligence.
+        </p>
+        <p class="hero-desc lang-pt">
+          Obrigado por visitar o meu site, fico feliz em ter você aqui!
+          Sou o João, Engenheiro Agrônomo e doutorando em Genética e
+          Melhoramento pela Universidade Federal de Viçosa (UFV), trabalhando
+          com genética quantitativa e aprendizado estatístico aplicados ao
+          melhoramento de plantas, no Idata, Instituto de Inteligência
+          Artificial e Computacional da UFV.
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag">Quantitative Genetics</span>
+          <span class="hero-tag">Genomic Selection</span>
+          <span class="hero-tag">Mixed Models</span>
+          <span class="hero-tag">Machine Learning</span>
+        </div>
+
+        <div class="hero-cta">
+          <!-- Social links -->
+          <a href="mailto:joao.m.sousa@ufv.br" class="hero-social-btn" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener" class="hero-social-btn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/amario17" target="_blank" rel="noopener" class="hero-social-btn" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://scholar.google.com.br/citations?user=fx1_ebQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" class="hero-social-btn" title="Google Scholar">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </a>
+          <a href="https://www.researchgate.net/profile/Joao-Amario-De-Sousa-2" target="_blank" rel="noopener" class="hero-social-btn" title="ResearchGate">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.193 12.193 0 0 0-.368 3.12 21.27 21.27 0 0 0 .183 2.923c.26 1.58.822 2.854 1.687 3.816.863.963 2.065 1.445 3.605 1.445.857 0 1.63-.2 2.318-.598a4.318 4.318 0 0 0 1.6-1.64 4.91 4.91 0 0 0 .586-2.39 4.91 4.91 0 0 0-.586-2.392 4.318 4.318 0 0 0-1.6-1.64C23.06 4.504 22.286 4.305 21.43 4.305c-.64 0-1.224.13-1.75.388a3.545 3.545 0 0 0-1.274 1.073c.07-.786.236-1.407.5-1.864.26-.455.618-.683 1.073-.683.34 0 .612.096.818.29.204.192.356.476.455.852l2.226-.3c-.173-.844-.53-1.508-1.07-1.99C21.87.26 21.128.002 20.235 0zm-3.905 10.79v6.58h2.38v-6.58zm1.19-3.946a1.343 1.343 0 1 0 0 2.686 1.343 1.343 0 0 0 0-2.686zM0 0v24h14.47v-2.344H2.344V2.344h9.87V8.47h6.126V0z"/></svg>
+          </a>
+          <a href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener" class="hero-social-btn" title="ORCID">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <span class="scroll-cue-label lang-en">Scroll</span>
+      <span class="scroll-cue-label lang-pt">Rolar</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </section>
+  <div class="awards-wrap">
+    <canvas class="awards-particles particles-canvas" aria-hidden="true"></canvas>
+  <section style="padding: 5rem 3.5rem; max-width: 68.75rem; margin: 0 auto;">
+
+    <!-- English -->
+    <div class="lang-en">
+      <h2 style="margin-bottom: 1.5rem;">Awards</h2>
+      <div class="item-list">
+
+        <div class="item-card">
+          <div class="news-card-flex">
+            <div class="award-carousel">
+              <div class="award-carousel-track">
+                <img src="/assets/hackathon_perfil.jpeg" alt="João Amario at the UFV-Bayer Hackathon 2026">
+                <img src="/assets/hackathon_group.jpeg" alt="Team Oraculum at the UFV-Bayer Hackathon 2026">
+              </div>
+              <button class="award-carousel-btn prev" type="button" aria-label="Previous photo" onclick="awardCarouselNav(this,-1)">&#8249;</button>
+              <button class="award-carousel-btn next" type="button" aria-label="Next photo" onclick="awardCarouselNav(this,1)">&#8250;</button>
+              <div class="award-carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div class="item-header">
+                <div>
+                  <h3>UFV–Bayer Hackathon 2026, 1st Place</h3>
+                  <p class="item-role">Team Oraculum, Champion</p>
+                </div>
+                <span class="tag accent">Award</span>
+              </div>
+              <p>Won 1st place at the UFV–Bayer Hackathon, the first edition of Bayer's hackathon held outside the United States. Hosted at IDATA (UFV's Institute of Artificial and Computational Intelligence), the challenge asked teams to predict the agronomic performance of maize lines using statistical learning and AI, in response to a sharp reduction in available field-testing plots. Competed as part of Team Oraculum, alongside Cecília Cassab Prieto, Princess Dera Baywood, Ian Otoni Vieira Gomes, and Guilherme Flaviano Pereira.</p>
+              <p><a href="https://www2.dti.ufv.br/noticias/scripts/exibeNoticiaMulti.php?codNot=45776" target="_blank" rel="noopener">Read the UFV news article &#8594;</a></p>
+              <div class="meta">
+                <span class="tag">Viçosa, Brazil</span>
+                <span class="tag">June 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-card">
+          <div class="news-card-flex">
+            <div class="award-carousel">
+              <div class="award-carousel-track">
+                <img src="/assets/gdm_challenge.jpeg" alt="João Amario receiving the 3rd GDM Universities Challenge award">
+                <img src="/assets/gdm_challenge_2.jpeg" alt="João Amario at the GDM laboratories in Cambé">
+              </div>
+              <button class="award-carousel-btn prev" type="button" aria-label="Previous photo" onclick="awardCarouselNav(this,-1)">&#8249;</button>
+              <button class="award-carousel-btn next" type="button" aria-label="Next photo" onclick="awardCarouselNav(this,1)">&#8250;</button>
+              <div class="award-carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div class="item-header">
+                <div>
+                  <h3>3rd GDM Universities Challenge, 1st Place</h3>
+                  <p class="item-role">QGSL Laboratory, IDATA – UFV, Champion</p>
+                </div>
+                <span class="tag accent">Award</span>
+              </div>
+              <p>Won 1st place in the 3rd GDM Universities Challenge, an initiative connecting universities with the seed industry to turn academic research into practical solutions for plant breeding. The award included a visit to GDM's laboratories in Cambé, Brazil, meeting outstanding researchers and learning firsthand about the innovation driving soybean breeding. This achievement reflects the mentorship of advisor Prof. Kaio Olimpio and the collaborative work of the Quantitative Genetics and Statistical Learning (QGSL) Laboratory, part of IDATA, UFV's Institute of Artificial and Computational Intelligence.</p>
+              <div class="meta">
+                <span class="tag">Cambé, Brazil</span>
+                <span class="tag">July 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Portuguese -->
+    <div class="lang-pt">
+      <h2 style="margin-bottom: 1.5rem;">Prêmios</h2>
+      <div class="item-list">
+
+        <div class="item-card">
+          <div class="news-card-flex">
+            <div class="award-carousel">
+              <div class="award-carousel-track">
+                <img src="/assets/hackathon_perfil.jpeg" alt="João Amario no Hackathon UFV-Bayer 2026">
+                <img src="/assets/hackathon_group.jpeg" alt="Equipe Oraculum no Hackathon UFV-Bayer 2026">
+              </div>
+              <button class="award-carousel-btn prev" type="button" aria-label="Foto anterior" onclick="awardCarouselNav(this,-1)">&#8249;</button>
+              <button class="award-carousel-btn next" type="button" aria-label="Próxima foto" onclick="awardCarouselNav(this,1)">&#8250;</button>
+              <div class="award-carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div class="item-header">
+                <div>
+                  <h3>Hackathon UFV–Bayer 2026, 1º Lugar</h3>
+                  <p class="item-role">Equipe Oraculum, Campeã</p>
+                </div>
+                <span class="tag accent">Prêmio</span>
+              </div>
+              <p>Conquistei o 1º lugar no Hackathon UFV–Bayer, a primeira edição do hackathon da Bayer realizada fora dos Estados Unidos. Sediado no Idata (Instituto de Inteligência Artificial e Computacional da UFV), o desafio consistiu em prever o desempenho agronômico de linhagens de milho usando aprendizado estatístico e IA, em resposta a uma redução drástica no número de parcelas de teste disponíveis. Competi na equipe Oraculum, ao lado de Cecília Cassab Prieto, Princess Dera Baywood, Ian Otoni Vieira Gomes e Guilherme Flaviano Pereira.</p>
+              <p><a href="https://www2.dti.ufv.br/noticias/scripts/exibeNoticiaMulti.php?codNot=45776" target="_blank" rel="noopener">Ver notícia no site da UFV &#8594;</a></p>
+              <div class="meta">
+                <span class="tag">Viçosa, Brasil</span>
+                <span class="tag">Junho 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-card">
+          <div class="news-card-flex">
+            <div class="award-carousel">
+              <div class="award-carousel-track">
+                <img src="/assets/gdm_challenge.jpeg" alt="João Amario recebendo o prêmio do 3º GDM Universities Challenge">
+                <img src="/assets/gdm_challenge_2.jpeg" alt="João Amario nos laboratórios da GDM em Cambé">
+              </div>
+              <button class="award-carousel-btn prev" type="button" aria-label="Foto anterior" onclick="awardCarouselNav(this,-1)">&#8249;</button>
+              <button class="award-carousel-btn next" type="button" aria-label="Próxima foto" onclick="awardCarouselNav(this,1)">&#8250;</button>
+              <div class="award-carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div class="item-header">
+                <div>
+                  <h3>3º GDM Universities Challenge, 1º Lugar</h3>
+                  <p class="item-role">Laboratório QGSL, Idata – UFV, Campeão</p>
+                </div>
+                <span class="tag accent">Prêmio</span>
+              </div>
+              <p>Conquistei o 1º lugar no 3º GDM Universities Challenge, uma iniciativa que conecta universidades à indústria de sementes para transformar pesquisa acadêmica em soluções práticas para o melhoramento de plantas. A premiação incluiu uma visita aos laboratórios da GDM em Cambé, onde tive a oportunidade de conhecer pesquisadores excepcionais e aprender de perto sobre a inovação que impulsiona o melhoramento de soja. Essa conquista reflete a orientação do meu orientador, Prof. Kaio Olimpio, e o trabalho coletivo do Laboratório de Genética Quantitativa e Aprendizado Estatístico (QGSL), parte do Idata, Instituto de Inteligência Artificial e Computacional da UFV.</p>
+              <div class="meta">
+                <span class="tag">Cambé, Brasil</span>
+                <span class="tag">Julho 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  </div>
+</main>
+
+<script>
+  function setLanguage(lang) {
+    document.body.setAttribute('data-lang', lang);
+    localStorage.setItem('preferredLanguage', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLang);
+    document.querySelectorAll('nav a[data-page="index"]').forEach(a => a.classList.add('active-page'));
+  });
+
+  function moveAwardCarousel(carousel, dir) {
+    const track = carousel.querySelector('.award-carousel-track');
+    const imgs = track.querySelectorAll('img');
+    let idx = parseInt(carousel.dataset.index || '0', 10);
+    idx = (idx + dir + imgs.length) % imgs.length;
+    carousel.dataset.index = idx;
+    track.style.transform = 'translateX(-' + (idx * carousel.clientWidth) + 'px)';
+    carousel.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function awardCarouselNav(btn, dir) {
+    moveAwardCarousel(btn.closest('.award-carousel'), dir);
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.award-carousel').forEach(function (carousel) {
+      let startX = null;
+      carousel.addEventListener('pointerdown', function (e) { startX = e.clientX; });
+      carousel.addEventListener('pointerup', function (e) {
+        if (startX === null) return;
+        const diff = e.clientX - startX;
+        startX = null;
+        if (Math.abs(diff) > 30) moveAwardCarousel(carousel, diff < 0 ? 1 : -1);
+      });
+    });
+  });
+
+
+</script>
+<script src="/dna.js"></script>
+<script src="/particles.js"></script>
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-copy lang-en">&copy; 2026 João Amario. All rights reserved.</div>
+      <div class="footer-copy lang-pt">&copy; 2026 João Amario. Todos os direitos reservados.</div>
+    </div>
+    <div class="footer-socials">
+      <a class="footer-social-link" href="mailto:joao.m.sousa@ufv.br" title="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener" title="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://github.com/amario17" target="_blank" rel="noopener" title="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://scholar.google.com.br/citations?user=fx1_ebQAAAAJ&amp;hl=pt-BR" target="_blank" rel="noopener" title="Google Scholar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.researchgate.net/profile/Joao-Amario-De-Sousa-2" target="_blank" rel="noopener" title="ResearchGate">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.193 12.193 0 0 0-.368 3.12 21.27 21.27 0 0 0 .183 2.923c.26 1.58.822 2.854 1.687 3.816.863.963 2.065 1.445 3.605 1.445.857 0 1.63-.2 2.318-.598a4.318 4.318 0 0 0 1.6-1.64 4.91 4.91 0 0 0 .586-2.39 4.91 4.91 0 0 0-.586-2.392 4.318 4.318 0 0 0-1.6-1.64C23.06 4.504 22.286 4.305 21.43 4.305c-.64 0-1.224.13-1.75.388a3.545 3.545 0 0 0-1.274 1.073c.07-.786.236-1.407.5-1.864.26-.455.618-.683 1.073-.683.34 0 .612.096.818.29.204.192.356.476.455.852l2.226-.3c-.173-.844-.53-1.508-1.07-1.99C21.87.26 21.128.002 20.235 0zm-3.905 10.79v6.58h2.38v-6.58zm1.19-3.946a1.343 1.343 0 1 0 0 2.686 1.343 1.343 0 0 0 0-2.686zM0 0v24h14.47v-2.344H2.344V2.344h9.87V8.47h6.126V0z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener" title="ORCID">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
