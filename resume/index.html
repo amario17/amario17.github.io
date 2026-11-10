@@ -299,8 +299,15 @@
   @media screen and (max-width: 840px) {
     .cv { width: auto; min-height: 0; margin: 1rem; padding: 1.4rem; }
     .cv-header { flex-direction: column; text-align: center; }
-    .cv-contact { justify-content: center; }
+    .cv-contact, .cv-license { justify-content: center; }
     .awards, .wg-groups, .skills-grid, .soft-grid { grid-template-columns: 1fr; }
+  }
+  @media screen and (max-width: 560px) {
+    .cv { margin: 0.5rem; padding: 1.1rem; }
+    .side-item { padding-left: 0; }
+    .side-item .year { position: static; width: auto; margin-bottom: 0.1rem; }
+    .cv p, .cv li, .cv .job-meta, .cv .pub-meta, .cv .pub-authors { text-align: left; }
+    .cv .job-meta { display: block; margin-left: 0; }
   }
   @media print {
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
