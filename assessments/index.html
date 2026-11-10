@@ -516,10 +516,12 @@
   });
 </script>
 <script>
-  /* Feedback form: posted to FormSubmit, which forwards it to my email */
+  /* Feedback form: posted to Web3Forms, which forwards it to my email */
   (function () {
-    const ENDPOINT = 'https://formsubmit.co/ajax/1685701359865543d4fba295543a2e70';
-    const RELAY = { name: 'Name', email: 'Email', relationship: 'Relationship', message: 'Feedback' };
+    const ENDPOINT = 'https://api.web3forms.com/submit';
+    const ACCESS_KEY = '70cf47fd-f83c-4591-b7d1-e602e7a4aab3';   // public form key (safe to publish)
+    // "email" doubles as the reply-to address in Web3Forms
+    const RELAY = { name: 'name', email: 'email', relationship: 'Relationship', message: 'message' };
 
     document.querySelectorAll('.feedback-form').forEach(function (form) {
       const status = form.querySelector('.fb-status');
@@ -535,19 +537,16 @@
         if (f._honey.value) return;                       // filled in by a bot
         if (!f.message.value.trim()) { say('empty', 'error'); f.message.focus(); return; }
 
-        const data = { _subject: 'New feedback from your website', _template: 'table', _captcha: 'false' };
+        const data = { access_key: ACCESS_KEY, subject: 'New feedback from your website', from_name: 'amario17.github.io' };
         Object.keys(RELAY).forEach(function (k) {
           const v = f[k].value.trim();
           if (v) data[RELAY[k]] = v;
         });
-        if (f.email.value.trim()) data._replyto = f.email.value.trim();
 
         button.disabled = true;
         say('sending');
         fetch(ENDPOINT, {
           method: 'POST',
-          // Send the full page URL: FormSubmit activates each form by its page address
-          referrerPolicy: 'no-referrer-when-downgrade',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         })
