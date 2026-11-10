@@ -546,6 +546,8 @@
         say('sending');
         fetch(ENDPOINT, {
           method: 'POST',
+          // Send the full page URL: FormSubmit activates each form by its page address
+          referrerPolicy: 'no-referrer-when-downgrade',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         })
