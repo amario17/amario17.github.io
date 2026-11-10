@@ -360,6 +360,220 @@ pivots &lt;- find_pivots(
         </div>
       </div>
     </section>
+
+    <section>
+      <h2>Model Scripts</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Ready-to-run analyses from my papers. Each card writes out the models, shows the ASReml-R code for every option and links to the full script, so you can pick the structure that fits your data.</p>
+
+      <div class="item-list">
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Covariance between generations icon">
+                <defs><linearGradient id="tF" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14b58e"/><stop offset="100%" stop-color="#0b6e57"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tF)"/>
+                <g transform="translate(15,15)">
+                  <rect x="0" y="0" width="16" height="16" rx="3" fill="#ffffff"/><rect x="19" y="0" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="38" y="0" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/>
+                  <rect x="0" y="19" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="19" y="19" width="16" height="16" rx="3" fill="#ffffff"/><rect x="38" y="19" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/>
+                  <rect x="0" y="38" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="19" y="38" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="38" y="38" width="16" height="16" rx="3" fill="#ffffff"/>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <span class="tool-journal">Euphytica · 2025</span>
+              <h3>Selecting populations across generations</h3>
+              <p class="tool-desc">Joint analysis of segregating populations evaluated in F2, F3 and F4: seven ways to model the genetic (co)variance of a population between generations (ID, DIAG, CS, CSH, UN, FA) and the residual, with model comparison and population selection. From Sousa et al. (2025), Euphytica.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>The idea</h4>
+            <p>The same population is evaluated in several generations. The lines inside it are not true replicates from one generation to the next, but they share the population's genetic background, so the population effects in different generations are correlated. Modeling this covariance lets each generation borrow information from the others and makes the selection of populations more accurate. All models below share the same fixed part and differ only in the genetic matrix (G) and the residual matrix (R):</p>
+            <pre><code>y = μ1 + X₁r + X₂b + Zg + ε
+
+r : location and generation effects (fixed)
+b : block within location (random)
+g : population effect in each generation,  g ~ N(0, Σg ⊗ I)
+ε : residual,  ε ~ N(0, R)
++ population × generation × location interaction (random)
+
+a = number of generations (here F2, F3, F4: a = 3)
+I = identity matrix,  J = matrix of ones,  ⊗ = Kronecker product</code></pre>
+
+            <h4>M1 · Identity (ID)</h4>
+            <p>A main population effect plus a population-within-generation effect, each with a single variance. No generation has its own variance. The covariance it implies is the same as compound symmetry (M3), which is why both models reach the same likelihood.</p>
+            <pre><code>Σg = σ²g J + σ²gg I
+
+random = ~ G + Ger:G + G:Ger:L + B:L</code></pre>
+
+            <h4>M2 · Diagonal (DIAG)</h4>
+            <p>Each generation has its own genetic variance, and generations are treated as independent: nothing is borrowed between them.</p>
+            <pre><code>Σg = diag(σ²F2, σ²F3, σ²F4)
+
+random = ~ at(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M3 · Compound symmetry (CS)</h4>
+            <p>The same genetic variance in every generation and the same correlation between any two generations.</p>
+            <pre><code>Σg = σ²g [ ρJ + (1 − ρ)I ]
+
+random = ~ corv(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M4 · Heterogeneous compound symmetry (CSH)</h4>
+            <p>One genetic variance per generation and a single genetic correlation between generations. It captures that genetic variance changes as inbreeding advances, while keeping one parameter for the link between generations.</p>
+            <pre><code>Σg = D [ ρJ + (1 − ρ)I ] D,   D = diag(σF2, σF3, σF4)
+
+random = ~ corh(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M5 · Unstructured (UN)</h4>
+            <p>One variance per generation and one correlation for each pair of generations. The most flexible option, but the number of parameters grows quickly with the number of generations: a(a + 1)/2.</p>
+            <pre><code>Σg = [ σ²F2       σF2,F3    σF2,F4 ]
+     [ σF3,F2     σ²F3      σF3,F4 ]
+     [ σF4,F2     σF4,F3    σ²F4   ]
+
+random = ~ corgh(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M6 · Factor analytic (FA1)</h4>
+            <p>One latent factor explains the covariance between generations (loadings λ), plus a specific variance for each generation (Ψ). Useful when there are many generations or environments. With only three generations, FA1 has as many parameters as UN and reaches the same fit.</p>
+            <pre><code>Σg = λλ' + Ψ
+
+random = ~ fa(Ger, 1):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M7 · CSH for G + heterogeneous residual (selected)</h4>
+            <p>The genetic structure of M4 plus one residual variance per generation. Early generations are more heterogeneous within plots, so a single residual variance is unrealistic. This was the best model in the paper by a wide margin.</p>
+            <pre><code>Σg = D [ ρJ + (1 − ρ)I ] D
+R  = σ²e,F2 I ⊕ σ²e,F3 I ⊕ σ²e,F4 I
+
+random   = ~ corh(Ger):G + G:Ger:L + B:L,
+residual = ~ dsum(~ units | Ger)</code></pre>
+
+            <h4>Choosing the model</h4>
+            <p>All models share the same fixed part, so they can be compared by AIC and BIC from REML (lower is better). For grain yield in the paper:</p>
+            <pre><code>model  R     G      logL      AIC      BIC
+M7     DIAG  CSH    -80.48    178.96   213.15   ← selected
+M4     ID    CSH   -121.19    254.39   277.18
+M2     ID    DIAG  -122.86    255.72   274.71
+M5     ID    UN    -121.07    258.14   288.53
+M6     ID    FA1   -121.07    258.14   288.53
+M1     ID    ID    -127.05    262.11   277.30
+M3     ID    CS    -127.05    262.11   277.30</code></pre>
+            <p>Table 4 of the paper. The script reproduces these log-likelihoods; the AIC and BIC printed by <code>summary()</code> may differ by a constant in M1&#8211;M6, depending on how the residual variance is counted, without changing the ranking.</p>
+            <p>The script also runs the single-environment analyses first (likelihood-ratio test for the population effect, heritability and accuracy), then uses the selected model to predict the population BLUPs, their accuracy (r = √(1 − PEV/σ²g)) and the expected gain from selecting the best populations.</p>
+            <p class="tool-refs">Sousa, Vieira, Fronza, Vieira Netto, Lima, Dias &amp; Nardino (2025), Euphytica 221, 55 · Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147 · Piepho, Möhring, Melchinger &amp; Büchse (2008), Euphytica 161, 209&#8211;228.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="/assets/scripts/MET_generations_vcov.R" download>Download script &#8594;</a>
+              <a class="tool-link-btn" href="https://doi.org/10.1007/s10681-025-03500-z" target="_blank" rel="noopener">Read the paper &#8594;</a>
+            </div>
+            <h4>Usage</h4>
+            <p>Put your data next to the script with the columns below, change the file name in the <code>read.table()</code> line and run it from top to bottom.</p>
+            <pre><code># Year  Location  Environment  Generation  Genotype      Block  GY
+# 2021  LOC_A     1            F2          PAR1 X PAR2   1      3500,0
+# 2021  LOC_A     1            F2          PAR1          1      3200,0
+# (illustrative values; populations named "PARENT A X PARENT B")
+
+data &lt;- read.table("my_data.txt", header = TRUE, sep = "\t", dec = ",", na.strings = "")</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map prediction icon">
+                <defs><linearGradient id="tG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9612f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tG)"/>
+                <g transform="translate(14,14)">
+                  <rect x="0" y="0" width="13" height="13" rx="2" fill="#14b58e"/><rect x="15" y="0" width="13" height="13" rx="2" fill="#14b58e"/><rect x="30" y="0" width="13" height="13" rx="2" fill="#ffffff" opacity="0.85"/><rect x="45" y="0" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="15" width="13" height="13" rx="2" fill="#14b58e"/><rect x="15" y="15" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="30" y="15" width="13" height="13" rx="2" fill="#ffffff" opacity="0.85"/><rect x="45" y="15" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="30" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="15" y="30" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="30" y="30" width="13" height="13" rx="2" fill="#14b58e"/><rect x="45" y="30" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="45" width="13" height="11" rx="2" fill="#ffffff" opacity="0.4"/><rect x="15" y="45" width="13" height="11" rx="2" fill="#14b58e"/><rect x="30" y="45" width="13" height="11" rx="2" fill="#14b58e"/><rect x="45" y="45" width="11" height="11" rx="2" fill="#14b58e"/>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <span class="tool-journal">Crop Science · 2026</span>
+              <h3>GIS-FA with multiple managements</h3>
+              <p class="tool-desc">Predicts every genotype in every pixel of the target population of environments: a factor analytic model with one intercept per management (irrigated and rainfed), choice of the FA model by the average semivariance ratio, and a PLS that links the rotated loadings to environmental covariates. From Sousa et al. (2026), Crop Science.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>What you need</h4>
+            <ul>
+              <li><strong>Phenotypes</strong>, one row per plot, with the management of each environment.</li>
+              <li><strong>W</strong>: the environmental covariates (ECs) of the tested environments, one row per environment, in the same order as the environments.</li>
+              <li><strong>&#937;</strong>: the <em>same</em> ECs (same names, units and growing window) for every pixel of the target population of environments, one file per management.</li>
+            </ul>
+            <pre><code># pheno.txt (illustrative values)
+Env  Harvest  Genotype  Block  GY
+E1   irr      G001      1      5100.0
+E1   irr      G002      1      4870.5
+E2   seq      G001      1      3820.0
+
+# covamb_exp.csv: ECs of the tested environments (rows in the order E1, E2, ...)
+LAT     LON     T2M   PRECTOT  RH2M  ...  clay
+-20.70  -42.80  21.4  3.2      71.5  ...  41.0
+-19.20  -46.20  20.1  2.7      66.0  ...  55.0
+
+# matcovamb_seq.csv / matcovamb_irr.csv: the same ECs for each pixel of the TPE
+LAT     LON     T2M   PRECTOT  RH2M  ...  clay
+-14.25  -44.20  23.5  2.1      58.3  ...  38.0
+-14.25  -44.19  23.4  2.1      58.1  ...  39.0</code></pre>
+
+            <h4>Step 1 · FA model with one intercept per management</h4>
+            <p>The genetic effects in each environment are explained by a few latent factors: environmental loadings (&#923;) times genotype scores (f), plus a specific deviation (&#948;). Each management has its own intercept, and each environment its own residual variance.</p>
+            <pre><code>y = μ_m + Xβ + Zg + ε
+g = (Λ ⊗ I) f + δ,   δ ~ N(0, Ψ ⊗ I),   ε ~ N(0, ⊕ σ²e,j I)
+
+Mod1 &lt;- asreml(fixed = GY ~ - 1 + Harvest + rep:env + env,
+               random = ~ gen:fa(env, 1),
+               residual = ~ dsum(~id(units) | env),
+               na.action = na.method(x = "include", y = "include"), maxit = 100,
+               data = data)
+# Mod2 to Mod5: the same model with gen:fa(env, 2) ... gen:fa(env, 5)</code></pre>
+
+            <h4>Step 2 · Rotation of loadings and scores</h4>
+            <p>A singular value decomposition makes the factors orthogonal and orders them by importance. After rotation, factor 1 usually has mostly positive loadings and represents overall performance.</p>
+            <pre><code>Λ = U L^(1/2) V'   →   Λ* = U,   f* = (L^(1/2) V' ⊗ I) f,   D = L</code></pre>
+
+            <h4>Step 3 · Choosing the FA model</h4>
+            <p>The function <code>fa.outs2()</code>, included in the script, rotates each model and returns its diagnostics, including the average semivariance ratio (ASVR), the share of the genetic (co)variance between environments that the factors capture. <strong>You choose the model</strong>: the first one whose ASVR reaches 75% (FA4 in the paper).</p>
+            <pre><code>ASVR = average semivariance of Λ* D Λ*'  /  average semivariance of G
+G    = Λ* D Λ*' + Ψ
+
+fa.models &lt;- list(Mod1, Mod2, Mod3, Mod4, Mod5)
+fa.res    &lt;- lapply(fa.models, function(x) fa.outs2(x, name.env = "env",
+                                                 name.gen = "gen", name.harvest = "Harvest"))
+diagnos   &lt;- do.call(rbind, lapply(fa.res, function(x) x$diagnostics))
+
+fa4 = fa.res[[4]]      # CHOOSE: index of the chosen model</code></pre>
+
+            <h4>Step 4 · GIS-FA: prediction in the TPE</h4>
+            <p>For each management, a PLS regression links the rotated loadings of the tested environments to their ECs. The coefficients are applied to the ECs of every pixel to predict its loadings, which are combined with the genotype scores to give the eBLUP of every genotype in every pixel. <strong>You choose the number of PLS components</strong>: in the paper it was 7, the number with the highest mean correlation between predicted and observed eBLUPs when leaving one environment out at a time.</p>
+            <pre><code>Λ* = W B + E               # PLS
+Λ*_U = Ω B̂                 # loadings of the untested pixels
+g_U = (Λ*_U ⊗ I) f*        # eBLUP of every genotype in every pixel
+
+harvest &lt;- "seq"           # "seq" (rainfed) or "irr" (irrigated)
+
+pls_model_all &lt;- plsr(lambda ~ CovAmb, validation = "none",
+                      data = data.pls.lamb_all,
+                      ncomp = 7)          # CHOOSE the number of components
+coef_pls_all  &lt;- coef(pls_model_all, intercept = TRUE)[,,1]
+
+pred_lambda = scale(mat_full) %*% coef_pls_all[-1, ]
+# + the intercept of each factor (fa1 ... fa4)
+EBLUPs_pred = pred_lambda %*% t(fa4$rot.scores) + mean(data$GY, na.rm = T)</code></pre>
+            <p>The output is the eBLUP of every genotype in every pixel, with its coordinates, ready for which-won-where maps.</p>
+            <p class="tool-refs">Sousa, Blasques, Condé, Silva, Eides, Fronza, Fernandes, Carneiro, Bhering, Nardino &amp; Dias (2026), Crop Science 66, e70309 · Araújo et al. (2024), Theoretical and Applied Genetics · Smith, Norman, Kuchel &amp; Cullis (2021), Frontiers in Plant Science 12, 737462.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="/assets/scripts/GISFA_multimanagement.R" download>Download script &#8594;</a>
+              <a class="tool-link-btn" href="https://doi.org/10.1002/csc2.70309" target="_blank" rel="noopener">Read the paper &#8594;</a>
+            </div>
+            <h4>Usage</h4>
+            <p>Put <code>pheno.txt</code>, <code>covamb_exp.csv</code> and the TPE files (<code>matcovamb_seq.csv</code>, <code>matcovamb_irr.csv</code>) next to the script and run it. There are three choices to make along the way, all marked with CHOOSE in the script: the FA model, the number of PLS components and the management (<code>harvest</code>), running the prediction once for each management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- Portuguese -->
@@ -634,6 +848,220 @@ pivots &lt;- find_pivots(
   covs     = covs,
   n_pivots = 5
 )</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Scripts de Modelos</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Análises prontas dos meus artigos. Cada cartão escreve os modelos, mostra o código em ASReml-R de cada opção e traz o script completo, para você escolher a estrutura que se ajusta aos seus dados.</p>
+
+      <div class="item-list">
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone de covariância entre gerações">
+                <defs><linearGradient id="tFb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#14b58e"/><stop offset="100%" stop-color="#0b6e57"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tFb)"/>
+                <g transform="translate(15,15)">
+                  <rect x="0" y="0" width="16" height="16" rx="3" fill="#ffffff"/><rect x="19" y="0" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="38" y="0" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/>
+                  <rect x="0" y="19" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="19" y="19" width="16" height="16" rx="3" fill="#ffffff"/><rect x="38" y="19" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/>
+                  <rect x="0" y="38" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="19" y="38" width="16" height="16" rx="3" fill="#ffffff" opacity="0.45"/><rect x="38" y="38" width="16" height="16" rx="3" fill="#ffffff"/>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <span class="tool-journal">Euphytica · 2025</span>
+              <h3>Seleção de populações entre gerações</h3>
+              <p class="tool-desc">Análise conjunta de populações segregantes avaliadas em F2, F3 e F4: sete formas de modelar a (co)variância genética de uma população entre gerações (ID, DIAG, CS, CSH, UN, FA) e o resíduo, com comparação de modelos e seleção de populações. Baseado em Sousa et al. (2025), Euphytica.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>A ideia</h4>
+            <p>A mesma população é avaliada em várias gerações. As linhas dentro dela não são repetições verdadeiras de uma geração para a outra, mas compartilham o mesmo fundo genético da população, então os efeitos da população em gerações diferentes são correlacionados. Modelar essa covariância permite que cada geração aproveite a informação das outras e torna a seleção das populações mais acurada. Todos os modelos abaixo têm a mesma parte fixa e diferem apenas na matriz genética (G) e na matriz residual (R):</p>
+            <pre><code>y = μ1 + X₁r + X₂b + Zg + ε
+
+r : efeitos de local e de geração (fixos)
+b : bloco dentro de local (aleatório)
+g : efeito da população em cada geração,  g ~ N(0, Σg ⊗ I)
+ε : resíduo,  ε ~ N(0, R)
++ interação população × geração × local (aleatória)
+
+a = número de gerações (aqui F2, F3, F4: a = 3)
+I = matriz identidade,  J = matriz de uns,  ⊗ = produto de Kronecker</code></pre>
+
+            <h4>M1 · Identidade (ID)</h4>
+            <p>Um efeito principal de população mais um efeito de população dentro de geração, cada um com uma única variância. Nenhuma geração tem variância própria. A covariância resultante é a mesma da simetria composta (M3), por isso os dois modelos chegam à mesma verossimilhança.</p>
+            <pre><code>Σg = σ²g J + σ²gg I
+
+random = ~ G + Ger:G + G:Ger:L + B:L</code></pre>
+
+            <h4>M2 · Diagonal (DIAG)</h4>
+            <p>Cada geração tem sua própria variância genética, e as gerações são tratadas como independentes: nada é aproveitado de uma para a outra.</p>
+            <pre><code>Σg = diag(σ²F2, σ²F3, σ²F4)
+
+random = ~ at(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M3 · Simetria composta (CS)</h4>
+            <p>A mesma variância genética em todas as gerações e a mesma correlação entre quaisquer duas gerações.</p>
+            <pre><code>Σg = σ²g [ ρJ + (1 − ρ)I ]
+
+random = ~ corv(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M4 · Simetria composta heterogênea (CSH)</h4>
+            <p>Uma variância genética por geração e uma única correlação genética entre gerações. Captura que a variância genética muda com o avanço da endogamia, mantendo um só parâmetro para a ligação entre as gerações.</p>
+            <pre><code>Σg = D [ ρJ + (1 − ρ)I ] D,   D = diag(σF2, σF3, σF4)
+
+random = ~ corh(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M5 · Não estruturada (UN)</h4>
+            <p>Uma variância por geração e uma correlação para cada par de gerações. É a opção mais flexível, mas o número de parâmetros cresce rápido com o número de gerações: a(a + 1)/2.</p>
+            <pre><code>Σg = [ σ²F2       σF2,F3    σF2,F4 ]
+     [ σF3,F2     σ²F3      σF3,F4 ]
+     [ σF4,F2     σF4,F3    σ²F4   ]
+
+random = ~ corgh(Ger):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M6 · Fator analítico (FA1)</h4>
+            <p>Um fator latente explica a covariância entre as gerações (cargas λ), mais uma variância específica para cada geração (Ψ). É útil quando há muitas gerações ou ambientes. Com apenas três gerações, o FA1 tem tantos parâmetros quanto o UN e chega ao mesmo ajuste.</p>
+            <pre><code>Σg = λλ' + Ψ
+
+random = ~ fa(Ger, 1):G + G:Ger:L + B:L</code></pre>
+
+            <h4>M7 · CSH para G + resíduo heterogêneo (selecionado)</h4>
+            <p>A estrutura genética do M4 mais uma variância residual por geração. As primeiras gerações são mais heterogêneas dentro das parcelas, então uma única variância residual não é realista. Foi o melhor modelo no artigo, com ampla vantagem.</p>
+            <pre><code>Σg = D [ ρJ + (1 − ρ)I ] D
+R  = σ²e,F2 I ⊕ σ²e,F3 I ⊕ σ²e,F4 I
+
+random   = ~ corh(Ger):G + G:Ger:L + B:L,
+residual = ~ dsum(~ units | Ger)</code></pre>
+
+            <h4>Escolhendo o modelo</h4>
+            <p>Todos os modelos têm a mesma parte fixa, então podem ser comparados pelo AIC e pelo BIC da REML (quanto menor, melhor). Para a produtividade de grãos no artigo:</p>
+            <pre><code>modelo R     G      logL      AIC      BIC
+M7     DIAG  CSH    -80.48    178.96   213.15   ← selecionado
+M4     ID    CSH   -121.19    254.39   277.18
+M2     ID    DIAG  -122.86    255.72   274.71
+M5     ID    UN    -121.07    258.14   288.53
+M6     ID    FA1   -121.07    258.14   288.53
+M1     ID    ID    -127.05    262.11   277.30
+M3     ID    CS    -127.05    262.11   277.30</code></pre>
+            <p>Tabela 4 do artigo. O script reproduz esses valores de logL; o AIC e o BIC impressos pelo <code>summary()</code> podem diferir por uma constante em M1&#8211;M6, conforme a contagem da variância residual, sem mudar a ordem dos modelos.</p>
+            <p>O script também faz antes as análises individuais de cada ambiente (teste da razão de verossimilhança para o efeito de população, herdabilidade e acurácia) e depois usa o modelo selecionado para predizer os BLUPs das populações, a acurácia deles (r = √(1 − PEV/σ²g)) e o ganho esperado com a seleção das melhores populações.</p>
+            <p class="tool-refs">Sousa, Vieira, Fronza, Vieira Netto, Lima, Dias &amp; Nardino (2025), Euphytica 221, 55 · Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147 · Piepho, Möhring, Melchinger &amp; Büchse (2008), Euphytica 161, 209&#8211;228.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="/assets/scripts/MET_generations_vcov.R" download>Baixar script &#8594;</a>
+              <a class="tool-link-btn" href="https://doi.org/10.1007/s10681-025-03500-z" target="_blank" rel="noopener">Ler o artigo &#8594;</a>
+            </div>
+            <h4>Como usar</h4>
+            <p>Coloque seus dados junto ao script com as colunas abaixo, troque o nome do arquivo na linha do <code>read.table()</code> e rode do início ao fim.</p>
+            <pre><code># Year  Location  Environment  Generation  Genotype      Block  GY
+# 2021  LOC_A     1            F2          PAR1 X PAR2   1      3500,0
+# 2021  LOC_A     1            F2          PAR1          1      3200,0
+# (valores ilustrativos; populações nomeadas "GENITOR A X GENITOR B")
+
+data &lt;- read.table("meus_dados.txt", header = TRUE, sep = "\t", dec = ",", na.strings = "")</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone de predição em mapa">
+                <defs><linearGradient id="tGb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9612f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tGb)"/>
+                <g transform="translate(14,14)">
+                  <rect x="0" y="0" width="13" height="13" rx="2" fill="#14b58e"/><rect x="15" y="0" width="13" height="13" rx="2" fill="#14b58e"/><rect x="30" y="0" width="13" height="13" rx="2" fill="#ffffff" opacity="0.85"/><rect x="45" y="0" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="15" width="13" height="13" rx="2" fill="#14b58e"/><rect x="15" y="15" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="30" y="15" width="13" height="13" rx="2" fill="#ffffff" opacity="0.85"/><rect x="45" y="15" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="30" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="15" y="30" width="13" height="13" rx="2" fill="#ffffff" opacity="0.4"/><rect x="30" y="30" width="13" height="13" rx="2" fill="#14b58e"/><rect x="45" y="30" width="11" height="13" rx="2" fill="#ffffff" opacity="0.85"/>
+                  <rect x="0" y="45" width="13" height="11" rx="2" fill="#ffffff" opacity="0.4"/><rect x="15" y="45" width="13" height="11" rx="2" fill="#14b58e"/><rect x="30" y="45" width="13" height="11" rx="2" fill="#14b58e"/><rect x="45" y="45" width="11" height="11" rx="2" fill="#14b58e"/>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <span class="tool-journal">Crop Science · 2026</span>
+              <h3>GIS-FA com múltiplos manejos</h3>
+              <p class="tool-desc">Prediz cada genótipo em cada pixel da população de ambientes-alvo: modelo fator analítico com um intercepto por manejo (irrigado e sequeiro), escolha do modelo FA pela razão média de semivariância e uma PLS que liga as cargas rotacionadas às covariáveis ambientais. Baseado em Sousa et al. (2026), Crop Science.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>O que você precisa</h4>
+            <ul>
+              <li><strong>Fenótipos</strong>, uma linha por parcela, com o manejo de cada ambiente.</li>
+              <li><strong>W</strong>: as covariáveis ambientais (ECs) dos ambientes testados, uma linha por ambiente, na mesma ordem dos ambientes.</li>
+              <li><strong>&#937;</strong>: as <em>mesmas</em> ECs (mesmos nomes, unidades e janela de cultivo) para cada pixel da população de ambientes-alvo, um arquivo por manejo.</li>
+            </ul>
+            <pre><code># pheno.txt (valores ilustrativos)
+Env  Harvest  Genotype  Block  GY
+E1   irr      G001      1      5100.0
+E1   irr      G002      1      4870.5
+E2   seq      G001      1      3820.0
+
+# covamb_exp.csv: ECs dos ambientes testados (linhas na ordem E1, E2, ...)
+LAT     LON     T2M   PRECTOT  RH2M  ...  clay
+-20.70  -42.80  21.4  3.2      71.5  ...  41.0
+-19.20  -46.20  20.1  2.7      66.0  ...  55.0
+
+# matcovamb_seq.csv / matcovamb_irr.csv: as mesmas ECs para cada pixel da TPE
+LAT     LON     T2M   PRECTOT  RH2M  ...  clay
+-14.25  -44.20  23.5  2.1      58.3  ...  38.0
+-14.25  -44.19  23.4  2.1      58.1  ...  39.0</code></pre>
+
+            <h4>Passo 1 · Modelo FA com um intercepto por manejo</h4>
+            <p>Os efeitos genéticos em cada ambiente são explicados por poucos fatores latentes: cargas ambientais (&#923;) vezes escores dos genótipos (f), mais um desvio específico (&#948;). Cada manejo tem seu próprio intercepto, e cada ambiente sua própria variância residual.</p>
+            <pre><code>y = μ_m + Xβ + Zg + ε
+g = (Λ ⊗ I) f + δ,   δ ~ N(0, Ψ ⊗ I),   ε ~ N(0, ⊕ σ²e,j I)
+
+Mod1 &lt;- asreml(fixed = GY ~ - 1 + Harvest + rep:env + env,
+               random = ~ gen:fa(env, 1),
+               residual = ~ dsum(~id(units) | env),
+               na.action = na.method(x = "include", y = "include"), maxit = 100,
+               data = data)
+# Mod2 a Mod5: o mesmo modelo com gen:fa(env, 2) ... gen:fa(env, 5)</code></pre>
+
+            <h4>Passo 2 · Rotação das cargas e dos escores</h4>
+            <p>Uma decomposição em valores singulares torna os fatores ortogonais e os ordena por importância. Depois da rotação, o fator 1 costuma ter cargas quase todas positivas e representa o desempenho geral.</p>
+            <pre><code>Λ = U L^(1/2) V'   →   Λ* = U,   f* = (L^(1/2) V' ⊗ I) f,   D = L</code></pre>
+
+            <h4>Passo 3 · Escolha do modelo FA</h4>
+            <p>A função <code>fa.outs2()</code>, incluída no script, faz a rotação de cada modelo e retorna os diagnósticos dele, entre eles a razão média de semivariância (ASVR), que é a parcela da (co)variância genética entre ambientes captada pelos fatores. <strong>Você escolhe o modelo</strong>: o primeiro cuja ASVR chega a 75% (FA4 no artigo).</p>
+            <pre><code>ASVR = semivariância média de Λ* D Λ*'  /  semivariância média de G
+G    = Λ* D Λ*' + Ψ
+
+fa.models &lt;- list(Mod1, Mod2, Mod3, Mod4, Mod5)
+fa.res    &lt;- lapply(fa.models, function(x) fa.outs2(x, name.env = "env",
+                                                 name.gen = "gen", name.harvest = "Harvest"))
+diagnos   &lt;- do.call(rbind, lapply(fa.res, function(x) x$diagnostics))
+
+fa4 = fa.res[[4]]      # ESCOLHA: índice do modelo escolhido</code></pre>
+
+            <h4>Passo 4 · GIS-FA: predição na TPE</h4>
+            <p>Para cada manejo, uma regressão PLS liga as cargas rotacionadas dos ambientes testados às suas ECs. Os coeficientes são aplicados às ECs de cada pixel para predizer as cargas dele, que são combinadas com os escores dos genótipos e dão o eBLUP de cada genótipo em cada pixel. <strong>Você escolhe o número de componentes da PLS</strong>: no artigo foram 7, o número com a maior correlação média entre os eBLUPs preditos e observados deixando um ambiente de fora por vez.</p>
+            <pre><code>Λ* = W B + E               # PLS
+Λ*_U = Ω B̂                 # cargas dos pixels não testados
+g_U = (Λ*_U ⊗ I) f*        # eBLUP de cada genótipo em cada pixel
+
+harvest &lt;- "seq"           # "seq" (sequeiro) ou "irr" (irrigado)
+
+pls_model_all &lt;- plsr(lambda ~ CovAmb, validation = "none",
+                      data = data.pls.lamb_all,
+                      ncomp = 7)          # ESCOLHA o número de componentes
+coef_pls_all  &lt;- coef(pls_model_all, intercept = TRUE)[,,1]
+
+pred_lambda = scale(mat_full) %*% coef_pls_all[-1, ]
+# + o intercepto de cada fator (fa1 ... fa4)
+EBLUPs_pred = pred_lambda %*% t(fa4$rot.scores) + mean(data$GY, na.rm = T)</code></pre>
+            <p>O resultado é o eBLUP de cada genótipo em cada pixel, com as coordenadas, pronto para os mapas de quem ganha onde.</p>
+            <p class="tool-refs">Sousa, Blasques, Condé, Silva, Eides, Fronza, Fernandes, Carneiro, Bhering, Nardino &amp; Dias (2026), Crop Science 66, e70309 · Araújo et al. (2024), Theoretical and Applied Genetics · Smith, Norman, Kuchel &amp; Cullis (2021), Frontiers in Plant Science 12, 737462.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="/assets/scripts/GISFA_multimanagement.R" download>Baixar script &#8594;</a>
+              <a class="tool-link-btn" href="https://doi.org/10.1002/csc2.70309" target="_blank" rel="noopener">Ler o artigo &#8594;</a>
+            </div>
+            <h4>Como usar</h4>
+            <p>Coloque o <code>pheno.txt</code>, o <code>covamb_exp.csv</code> e os arquivos da TPE (<code>matcovamb_seq.csv</code>, <code>matcovamb_irr.csv</code>) junto ao script e rode. Há três escolhas no caminho, todas marcadas com CHOOSE no script: o modelo FA, o número de componentes da PLS e o manejo (<code>harvest</code>), rodando a predição uma vez para cada manejo.</p>
           </div>
         </div>
       </div>

@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CV | João Amario</title>
-  <meta name="description" content="CV of João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding: experience, projects, publications, awards and skills.">
+  <meta name="description" content="CV of João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding: education, experience, publications and awards.">
   <meta name="author" content="João Marcos Amario de Sousa">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="João Amario">
   <meta property="og:title" content="CV | João Amario">
-  <meta property="og:description" content="CV of João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding: experience, projects, publications, awards and skills.">
+  <meta property="og:description" content="CV of João Marcos Amario de Sousa, Ph.D. candidate in Genetics and Plant Breeding: education, experience, publications and awards.">
   <meta property="og:url" content="https://amario17.github.io/resume/">
   <meta property="og:image" content="https://amario17.github.io/assets/perfil.jpg">
   <meta property="og:locale" content="en_US">
@@ -164,6 +164,11 @@
     .cv p, .cv li { orphans: 3; widows: 3; }
   }
 
+  /* R package / software names */
+  .cv code.pkg { font-family: 'Fira Code', Consolas, 'Courier New', monospace; font-size: 0.86em; font-style: normal; color: var(--wine); background: rgba(107,44,31,0.07); border: 1px solid rgba(107,44,31,0.12); border-radius: 4px; padding: 0 0.28em; white-space: nowrap; }
+
+  .side-item .year-note { font-weight: 600; font-size: 0.66rem; color: var(--muted); }
+
   /* Awards highlight band */
   .awards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
   .award {
@@ -174,15 +179,15 @@
     border-radius: 8px;
     background: linear-gradient(135deg, rgba(201,154,46,0.12), rgba(255,255,255,0) 70%);
   }
-  .award-icon { grid-row: 1 / span 3; width: 34px; height: 34px; color: #b8871d; }
+  .award-icon { grid-row: 1 / span 3; width: 40px; height: 40px; color: #b8871d; }
   .award > div { display: contents; }
   .award-place, .award-title, .award-sub { grid-column: 2; }
   .award p { grid-column: 1 / -1; margin-top: 0.35rem; }
   .cv sub { font-size: 0.7em; line-height: 0; }
-  .award-place { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #9a6f12; }
+  .award-place { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.06em; line-height: 1.2; text-transform: uppercase; color: #9a6f12; }
   .award-title { font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.25; }
   .award-sub { font-size: 0.76rem; color: var(--muted); margin: 0.1rem 0 0.25rem; }
-  .award p { font-size: 0.8rem; }
+  .award p { font-size: 0.74rem; line-height: 1.5; color: var(--muted); }
 
   /* Project status tags */
   .proj-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; }
@@ -237,6 +242,55 @@
       }
     }
   }
+  /* Award cards: compact, left-aligned text (overrides the rules above) */
+  .award { padding: 0.65rem 0.85rem 0.7rem; column-gap: 0.65rem; row-gap: 0; }
+  .award-icon { width: 30px; height: 30px; margin-top: 0.1rem; }
+  .award-place { font-size: 0.86rem; letter-spacing: 0.05em; line-height: 1.15; }
+  .award-title { font-size: 0.88rem; line-height: 1.2; margin-top: 0.1rem; }
+  .award-sub { font-size: 0.72rem; line-height: 1.35; margin: 0.15rem 0 0; }
+  .cv .award p { text-align: justify; hyphens: manual; font-size: 0.74rem; line-height: 1.45; margin-top: 0.45rem; }
+
+  /* Two-page layout: compact Working Genius and skill rows (overrides the rules above) */
+  .wg-groups { gap: 0.6rem; }
+  .wg-group { padding: 0.55rem 0.75rem; }
+  .wg-group-sub { margin-bottom: 0.35rem; }
+  .wg-gear { align-items: center; margin-bottom: 0.3rem; }
+  .wg-gear svg { width: 26px; height: 26px; }
+  .skill { margin-bottom: 0.2rem; }
+  .skill-group { margin-bottom: 0.3rem; }
+  .skills-subtitle { margin: 0.35rem 0 0.25rem; }
+
+  /* Soft skills as chips */
+  .soft-chips { display: flex; flex-wrap: wrap; gap: 0.35rem 0.4rem; }
+  .chip { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.76rem; color: var(--text); padding: 0.18rem 0.55rem; border-radius: 99px; border: 1px solid; }
+  .chip b { font-weight: 700; font-size: 0.7rem; color: var(--muted); }
+  .chip.genius { background: rgba(47,143,91,0.10); border-color: rgba(47,143,91,0.35); }
+  .chip.competency { background: rgba(201,154,46,0.12); border-color: rgba(201,154,46,0.45); }
+  .chip.neutral { background: rgba(143,133,128,0.10); border-color: rgba(143,133,128,0.35); }
+  .chip .wg-tag { margin-left: 0; }
+
+  /* Two-page density: inline titles and details, tighter section spacing */
+  .cv h2 { margin: 0.8rem 0 0.4rem; }
+  .cv p { line-height: 1.5; }
+  .side-item { display: block; position: relative; padding-left: 7.3rem; margin-bottom: 0.3rem; }
+  .side-item .year { position: absolute; left: 0; top: 0.1rem; width: 6.5rem; }
+  .side-item .title, .side-item .sub { display: inline; }
+  .side-item .sub::before { content: ' · '; }
+  .side-item:has(.year-note) { min-height: 2.2rem; }
+  .job { margin-bottom: 0.45rem; }
+  .cv .job-title { display: inline; }
+  .job-meta { display: inline; margin-left: 0.5rem; }
+  .job ul { margin-top: 0.15rem; }
+  .cv li { margin-bottom: 0.05rem; }
+  .pub-item { margin-bottom: 0.45rem; }
+
+  /* Awards as compact rows */
+  .award-rank { color: #9a6f12; font-weight: 800; }
+  .pub-meta { font-style: normal; }
+
+  /* Education: same row height for every entry, with or without the (expected) note */
+  .side-item.edu { min-height: 0; }
+  .cv .edu-note { font-size: 0.66rem; line-height: 1.2; color: var(--muted); margin: -0.1rem 0 0; padding-left: 7.3rem; }
   /* Published page */
   .cv-actions { max-width: 210mm; margin: 1rem auto 0; display: flex; justify-content: space-between; gap: 1rem; }
   .cv-actions a { font-size: 0.85rem; font-weight: 700; color: var(--wine); text-decoration: none; padding: 0.45rem 0.9rem; border: 1px solid var(--border); border-radius: 6px; background: #fff; }
@@ -254,6 +308,15 @@
     .cv h2 { break-after: avoid; }
     .job, .proj, .pub-item, .award, .side-item, .wg-group, .skill, .cv-header, .ref, .refs { break-inside: avoid; }
     .cv-sec.keep { break-inside: avoid; page-break-inside: avoid; }
+    .keep-block { break-inside: avoid; page-break-inside: avoid; }
+    .cv { zoom: 0.92; }   /* print scale */
+    /* Vertical rhythm: gaps scaled by SP so the content fills both pages evenly */
+    .cv h2 { margin-top: calc(0.8rem * 2.2); margin-bottom: calc(0.4rem * 2.2); }
+    .cv .job, .cv .pub-item { margin-bottom: calc(0.45rem * 2.2); }
+    .cv .side-item { margin-bottom: calc(0.3rem * 2.2); }
+    .cv .job ul { margin-top: calc(0.15rem * 2.2); }
+    .cv li { margin-bottom: calc(0.05rem * 2.2); }
+    .cv .wg-intro { margin-bottom: calc(0.7rem * 2.2); }
   }
 </style>
 </head>
@@ -265,26 +328,43 @@
 <div class="cv" id="cv">
 
   <div class="cv-header">
-    <div class="cv-photo"><img src="/assets/perfil_resume.jpg" alt="João Amario"></div>
     <div>
       <h1>João Marcos Amario de Sousa</h1>
       <div class="cv-role">Ph.D. Candidate in Genetics and Plant Breeding</div>
       <div class="cv-inst">Federal University of Viçosa (UFV)</div>
       <div class="cv-license"><svg class="flag" viewBox="0 0 20 14" aria-label="Brasil" role="img"><rect width="20" height="14" rx="1.5" fill="#009c3b"/><path d="M10 1.6 18.4 7 10 12.4 1.6 7z" fill="#ffdf00"/><circle cx="10" cy="7" r="3.1" fill="#002776"/></svg><span>Brazilian driver's license, category AD</span></div>
       <div class="cv-contact">
-        <a href="mailto:joao.m.sousa@ufv.br"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>joao.m.sousa@ufv.br</a>
-        <span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Champaign, Illinois, USA</span>
-        <a href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>linkedin.com/in/joão-marcos-amario</a>
-        <a href="https://github.com/amario17" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>github.com/amario17</a>
-        <a href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>orcid.org/0009-0002-5102-7142</a>
-        <a href="https://amario17.github.io" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.2 8.2 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.2 8.2 0 0 1 0 4h-3.38z"/></svg>amario17.github.io</a>
+        <a href="mailto:joao.m.sousa@ufv.br"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a>
+        <a href="https://www.linkedin.com/in/jo%C3%A3o-marcos-amario-6143ba265/" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <a href="https://github.com/amario17" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub repository</a>
+        <a href="https://orcid.org/0009-0002-5102-7142" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>ORCID</a>
+        <a href="https://amario17.github.io" target="_blank" rel="noopener"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.95a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.9 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.2 8.2 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.2 8.2 0 0 1 0 4h-3.38z"/></svg>Personal website</a>
       </div>
     </div>
   </div>
 
-<section class="cv-sec">
-  <h2>About Me</h2>
-  <p>Ph.D. candidate in Genetics and Plant Breeding at the Federal University of Viçosa (UFV), advised by Prof. Kaio Olimpio das Graças Dias, focusing on genomic prediction and the integration of genomic and environmental information to model genotypes × environments interaction and predict genotype performance in untested environments. I am currently a visiting scholar (sandwich Ph.D.) at the University of Illinois Urbana-Champaign, advised by Prof. Alexander Lipka, developing statistical and computational models applied to plant breeding. My work spans quantitative genetics, mixed models, environmental covariates, multi-environment trial analysis, spatial modeling and the development of analytical tools in R, aiming to deliver robust solutions that breeding programs can put into practice.</p>
+<section class="cv-sec keep">
+      <h2>Education</h2>
+      <div class="side-item edu">
+        <div class="year">2026 – present</div>
+        <div class="title">Visiting Scholar</div>
+        <div class="sub">University of Illinois Urbana-Champaign, USA · Advisor: Prof. Alexander Lipka</div>
+      </div>
+      <div class="side-item edu">
+        <div class="year">2024 – present</div>
+        <div class="title">Ph.D. in Genetics and Plant Breeding</div>
+        <div class="sub">Federal University of Viçosa (UFV) · Advisor: Prof. Kaio Olimpio</div>
+      </div>
+      <div class="side-item edu">
+        <div class="year">2022 – 2024</div>
+        <div class="title">M.Sc. in Genetics and Plant Breeding</div>
+        <div class="sub">Federal University of Viçosa (UFV) · Advisor: Prof. Maicon Nardino</div>
+      </div>
+      <div class="side-item edu">
+        <div class="year">2017 – 2020</div>
+        <div class="title">B.Sc. in Agronomic Engineering</div>
+        <div class="sub">Federal Institute of Tocantins (IFTO) · Advisor: Prof. Leonardo Correia</div>
+      </div>
 
 
 </section>
@@ -294,130 +374,109 @@
         <div class="job-title">Ph.D. in Genetics and Plant Breeding</div>
         <div class="job-meta">Idata, Federal University of Viçosa · 2024 – present</div>
         <ul>
-          <li>Identify methodological gaps in plant breeding research and design analytical strategies that combine mixed models and statistical learning to support selection decisions.</li>
-          <li>Apply mixed models in ASReml to predict genotype performance in untested environments, integrating environmental covariates and factor analytic models for cultivar recommendation.</li>
-          <li>Develop and maintain <i>qgtools</i>, an open-source collection of R functions I use daily for two-stage multi-environment analysis, environmental covariate assembly and spatial genomic and environmental prediction.</li>
-          <li>Maintain public repositories on GitHub, using version control and reproducible coding practices.</li>
+          <li>Model genotype-by-environment interaction with mixed models and integrate environmental covariates into genomic prediction to predict genotypes in untested environments.</li>
+          <li>Lead a partnership project with GDM Seeds on continental-scale soybean data, combining phenotypic data and environmental covariates to support cultivar recommendation.</li>
+          <li>Develop and maintain <code class="pkg">qgtools</code>, an open-source collection of R functions for multi-environment trial and environmental covariate analyses, versioned on GitHub.</li>
+          <li>Propose a pipeline to estimate the reliability and error of predictions for untested environments, showing breeding programs which predictions they can trust.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-title">M.Sc. in Genetics and Plant Breeding</div>
         <div class="job-meta">Federal University of Viçosa · 2022 – 2024</div>
         <ul>
-          <li>Investigated statistical genetics models with residual and genetic covariance structures to select tropical wheat populations.</li>
-          <li>Conducted tropical wheat field trials, from planting to harvest and data collection, building a solid foundation in field experimentation that now underpins the analyses and models I develop in my Ph.D.</li>
+          <li>Modeled genetic and residual covariances in tropical wheat populations to improve selection accuracy.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-title">Agricultural Consultant</div>
         <div class="job-meta">Fazenda Mundo Novo, Darcinópolis, TO, Brazil · 2022 – 2026</div>
         <ul>
-          <li>Provided remote technical advisory on maize production and pasture management, with recommendations based on soil analyses, climate data and performance indicators.</li>
-          <li>Planned planting schedules, crop rotation and fertilization to increase yield and reduce costs.</li>
+          <li>Provided remote advisory on maize and pasture management based on soil, climate and performance data.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-title">Farm Manager</div>
         <div class="job-meta">Fazenda Mundo Novo, Darcinópolis, TO, Brazil · 2021 – 2022</div>
         <ul>
-          <li>Managed daily maize and pasture production operations for livestock, from planning to execution.</li>
-          <li>Led and trained field teams and took part in negotiations, resource management and decision making.</li>
+          <li>Managed maize and pasture production for livestock and led the field teams.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-title">Technical Consultant</div>
         <div class="job-meta">SENAR (CNA System), Imperatriz, MA, Brazil · 2020 – 2021</div>
         <ul>
-          <li>Provided technical assistance to 30 beef cattle farms in the interior of Maranhão, bringing technologies and best practices to improve productivity, animal health and efficiency.</li>
+          <li>Provided technical assistance to 30 beef cattle farms in Maranhão, focused on productivity and animal health.</li>
         </ul>
       </div>
       <div class="job">
         <div class="job-title">Undergraduate Research, Sorghum Breeding</div>
-        <div class="job-meta">Embrapa Maize and Sorghum (Sete Lagoas, MG) and IFTO, Araguatins Campus · 2017 – 2020</div>
+        <div class="job-meta">Embrapa Maize and Sorghum and IFTO · 2017 – 2020</div>
         <ul>
-          <li>Under the supervision of Prof. Leonardo Correia, worked with the Embrapa Maize and Sorghum breeding program evaluating dual-purpose biomass sorghum, intended for both biomass production and forage, in the far north of Tocantins.</li>
+          <li>Evaluated dual-purpose biomass sorghum in the Embrapa Maize and Sorghum breeding program.</li>
         </ul>
       </div>
 
 
 </section>
 <section class="cv-sec">
-      <h2>Projects</h2>
-      <div class="proj">
-        <div class="proj-head"><div class="proj-title">Beyond Prediction: Quantifying Certainty in Genotype Performance Across Untested Environments</div><span class="status-tag ongoing">Ongoing</span></div>
-        <p>We are developing an approach to quantify the uncertainty of genotype performance predictions in untested environments, going beyond point estimates to support recommendation decisions with greater confidence.</p>
-      </div>
-      <div class="proj">
-        <div class="proj-head"><div class="proj-title">From Multi-Environment Trials to Data-Driven Genotype Selection in Soybean</div><span class="status-tag ongoing">Ongoing</span></div>
-        <p>In partnership with GDM Seeds, we investigate what models that integrate environmental information actually capture of genotypes × environments interaction. Leveraging continental-scale data (5 breeding programs, 155 locations and 1,232 genotypes, from 2021 to 2023) and the broad representativeness of the company's germplasm, present in about 45% of global soybean production and in over 80% of the soybean area in Brazil, we seek to understand how these models represent genotype adaptation across space and what this means for selection in untested environments.</p>
-      </div>
-      <div class="proj">
-        <div class="proj-head"><div class="proj-title">Tropical wheat expansion into the Brazilian Cerrado</div><span class="status-tag done">Completed</span></div>
-        <p>How can we know where tropical wheat will perform well before it is even planted? We developed a pipeline that combines GIS, factor analytic models and 83 environmental covariates to predict genotype performance in untested environments, supporting the UFV wheat breeding program in expanding the crop across the Brazilian Cerrado. Pixel-by-pixel recommendations outyielded the best genotype indicated by conventional selection tools by 9.8% (rainfed) and 13.4% (irrigated). Published in <i>Crop Science</i> (2026).</p>
-      </div>
-      <div class="proj">
-        <div class="proj-head"><div class="proj-title">Early selection of tropical wheat populations</div><span class="status-tag done">Completed</span></div>
-        <p>Can we tell early which populations will give rise to the best lines? We evaluated 25 segregating tropical wheat populations in the F<sub>2</sub>, F<sub>3</sub> and F<sub>4</sub> generations across six environments, using models that treat generation as a nested effect and combine different genetic and residual (co)variance structures. The best model pinpointed the populations with the greatest potential to produce superior lines, making selection possible from the earliest generations. Published in <i>Euphytica</i> (2025).</p>
-      </div>
-      <div class="proj">
-        <div class="proj-head"><div class="proj-title">qgtools: R functions for quantitative genetics</div><span class="status-tag live">On GitHub</span></div>
-        <p>An open-source collection of functions I use daily in quantitative genetics analyses: two-stage multi-environment analysis (BLUEs, BLUPs, weights and Cullis heritability), climate and soil covariate assembly, and spatial interpolation via Random Forest.</p>
-      </div>
-
-
-</section>
-<section class="cv-sec keep">
       <h2>Publications</h2>
       <div class="pub-item">
         <div class="pub-title">Modeling genotype-by-environment interaction for variety recommendation in tropical wheat</div>
-        <div class="pub-authors"><b>Sousa, J. M. A.</b>; Blasques, G. M.; Condé, A. T.; Silva, A. F.; Eides, J. R.; Fronza, R. T. L.; Fernandes, S. B.; Carneiro, P. C. S.; Bhering, L. L.; Nardino, M.; Dias, K. O. G.</div>
-        <div class="pub-meta">Crop Science, 66(3), e70309 (2026) · <a href="https://doi.org/10.1002/csc2.70309" target="_blank" rel="noopener">doi.org/10.1002/csc2.70309</a></div>
+        <div class="pub-meta"><b>Sousa, J. M. A.</b> et al. · <i>Crop Science</i> (2026) · <a href="https://doi.org/10.1002/csc2.70309" target="_blank" rel="noopener">View article &#8599;</a></div>
       </div>
       <div class="pub-item">
         <div class="pub-title">Statistical genetics models with residual and genetic structures enhance the accuracy of selecting wheat populations</div>
-        <div class="pub-authors"><b>Sousa, J. M. A.</b>; Vieira, E. F. T.; Fronza, R. T. L.; Vieira Netto, J. A. F.; Lima, G. W.; Dias, K. O. G.; Nardino, M.</div>
-        <div class="pub-meta">Euphytica, 221(5), 55 (2025) · <a href="https://doi.org/10.1007/s10681-025-03500-z" target="_blank" rel="noopener">doi.org/10.1007/s10681-025-03500-z</a></div>
+        <div class="pub-meta"><b>Sousa, J. M. A.</b> et al. · <i>Euphytica</i> (2025) · <a href="https://doi.org/10.1007/s10681-025-03500-z" target="_blank" rel="noopener">View article &#8599;</a></div>
       </div>
       <div class="pub-item">
         <div class="pub-title">Uncovering the parameters and genetic gain in selection strategies of wheat breeding populations</div>
-        <div class="pub-authors"><b>Sousa, J. M. A.</b>; Silva, C. M.; Vieira, E. F. T.; Mezzomo, H. C.; Salvador, O. M.; Nardino, M.</div>
-        <div class="pub-meta">Revista Brasileira de Ciências Agrárias (Agrária), 20(1), e3792 (2025) · <a href="https://doi.org/10.5039/agraria.v20i1a3792" target="_blank" rel="noopener">doi.org/10.5039/agraria.v20i1a3792</a></div>
+        <div class="pub-meta"><b>Sousa, J. M. A.</b> et al. · <i>Revista Brasileira de Ciências Agrárias</i> (2025) · <a href="https://doi.org/10.5039/agraria.v20i1a3792" target="_blank" rel="noopener">View article &#8599;</a></div>
       </div>
 
 
 </section>
 <section class="cv-sec keep">
-      <h2>Education</h2>
+      <h2>Presentations</h2>
       <div class="side-item">
-        <div class="year">2026 – present</div>
-        <div class="title">Sandwich Ph.D. (Visiting Scholar)</div>
-        <div class="sub">University of Illinois Urbana-Champaign, USA · Advisor: Prof. Alexander Lipka</div>
+        <div class="year">Aug 2026</div>
+        <div class="title">Optimization of target population of environments for breeding programs</div>
+        <div class="sub">XVII International Symposium on Genetics and Breeding (SIGM) · UFV, Viçosa, MG, Brazil</div>
       </div>
       <div class="side-item">
-        <div class="year">2024 – present</div>
-        <div class="title">Ph.D. in Genetics and Plant Breeding</div>
-        <div class="sub">Federal University of Viçosa (UFV) · Advisor: Prof. Kaio Olimpio das Graças Dias</div>
+        <div class="year">Nov 2025</div>
+        <div class="title">Kernel-FA unlocks key environmental drivers of GEI</div>
+        <div class="sub">XVI International Symposium on Genetics and Breeding (SIGM) · UFV, Viçosa, MG, Brazil</div>
       </div>
       <div class="side-item">
-        <div class="year">2022 – 2024</div>
-        <div class="title">M.Sc. in Genetics and Plant Breeding</div>
-        <div class="sub">Federal University of Viçosa (UFV) · Advisor: Prof. Maicon Nardino</div>
-      </div>
-      <div class="side-item">
-        <div class="year">2017 – 2020</div>
-        <div class="title">B.Sc. in Agronomic Engineering</div>
-        <div class="sub">Federal Institute of Tocantins (IFTO), Araguatins Campus · Advisor: Prof. Leonardo Correia</div>
+        <div class="year">Nov 2024</div>
+        <div class="title">Transforming tropical wheat recommendation: a fresh perspective with GIS-FA 1.1</div>
+        <div class="sub">XV International Symposium on Genetics and Breeding (SIGM) · UFV, Viçosa, MG, Brazil</div>
       </div>
 
 
 </section>
 <section class="cv-sec keep">
-      <h2>Leadership &amp; Mentoring</h2>
+      <h2>Awards</h2>
       <div class="side-item">
-        <div class="year">2026 – present</div>
-        <div class="title">Mentee, Bayer University Mentoring Program (B4U)</div>
-        <div class="sub">One-on-one mentoring with a Bayer scientist</div>
+        <div class="year">June 2026</div>
+        <div class="title"><span class="award-rank">1st place</span> · UFV–Bayer Hackathon 2026</div>
+        <div class="sub">Team Oraculum · Idata, UFV · Viçosa, MG, Brazil</div>
       </div>
+      <div class="side-item">
+        <div class="year">July 2026</div>
+        <div class="title"><span class="award-rank">1st place</span> · 3rd GDM Universities Challenge</div>
+        <div class="sub">QGSL Laboratory, Idata, UFV · Cambé, PR, Brazil</div>
+      </div>
+      <div class="side-item">
+        <div class="year">Nov 2024</div>
+        <div class="title"><span class="award-rank">Honorable Mention</span> · Professor Cosme Damião Award, XV SIGM</div>
+        <div class="sub">Doctorate and Postdoctoral category · UFV, Viçosa, MG, Brazil</div>
+      </div>
+
+
+</section>
+<section class="cv-sec keep">
+      <h2>Leadership</h2>
       <div class="side-item">
         <div class="year">2023 – 2024</div>
         <div class="title">Events Coordinator, GenMelhor</div>
@@ -432,123 +491,38 @@
 
 </section>
 <section class="cv-sec keep">
-  <h2>Awards</h2>
-  <div class="awards">
-    <div class="award">
-      <svg class="award-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7 2h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v2H8v-2h3v-2.1A5 5 0 0 1 7.6 12 5 5 0 0 1 3 7V4h4V2zm0 4H5v1a3 3 0 0 0 2 2.8V6zm10 0v3.8A3 3 0 0 0 19 7V6h-2z"/><rect x="6" y="20" width="12" height="2" rx="1"/></svg>
-      <div>
-        <div class="award-place">1st place · June 2026</div>
-        <div class="award-title">UFV–Bayer Hackathon 2026</div>
-        <div class="award-sub">Team Oraculum · Idata, UFV · Viçosa, MG, Brazil</div>
-        <p>The first edition of Bayer's hackathon held outside the United States. Challenge: train models on data from 2001 to 2007 and predict the performance of maize lines in 2008, integrating genomic and environmental information.</p>
+      <h2>Professional Development</h2>
+      <div class="side-item">
+        <div class="year">2026 – present</div>
+        <div class="title">Mentee, Bayer University Mentoring Program (B4U)</div>
+        <div class="sub">One-on-one mentoring with a Bayer scientist</div>
       </div>
-    </div>
-    <div class="award">
-      <svg class="award-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M7 2h10v2h4v3a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v2H8v-2h3v-2.1A5 5 0 0 1 7.6 12 5 5 0 0 1 3 7V4h4V2zm0 4H5v1a3 3 0 0 0 2 2.8V6zm10 0v3.8A3 3 0 0 0 19 7V6h-2z"/><rect x="6" y="20" width="12" height="2" rx="1"/></svg>
-      <div>
-        <div class="award-place">1st place · July 2026</div>
-        <div class="award-title">3rd GDM Universities Challenge</div>
-        <div class="award-sub">QGSL Laboratory, Idata, UFV · Cambé, PR, Brazil</div>
-        <p>Challenge: develop tools and new methodologies for use in a plant breeding program. The award included a visit to GDM's laboratories.</p>
-      </div>
-    </div>
-  </div>
-
-
-</section>
-<section class="cv-sec keep">
-  <h2>Working Genius</h2>
-  <p class="wg-intro">I took The Table Group's Working Genius assessment, which identifies six types of genius required for any kind of work. My profile is <b>Loyal Finisher (ET | TE)</b>: I draw energy from seeing tasks through to completion and from supporting the people around me. I am the one who responds quickly and delivers reliably.</p>
-  <div class="wg-groups">
-    <div class="wg-group genius">
-      <div class="wg-group-title">Genius</div>
-      <div class="wg-group-sub">What energizes me</div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">T</text></svg><div><div class="wg-gear-name">Tenacity</div><div class="wg-gear-desc">Seeing work through to completion and making sure results happen.</div></div></div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">E</text></svg><div><div class="wg-gear-name">Enablement</div><div class="wg-gear-desc">Responding to the team's needs and giving the support that moves ideas forward.</div></div></div>
-    </div>
-    <div class="wg-group competency">
-      <div class="wg-group-title">Competency</div>
-      <div class="wg-group-sub">I do it well, but it does not energize me</div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">I</text></svg><div><div class="wg-gear-name">Invention</div><div class="wg-gear-desc">Creating new solutions and ideas when a problem calls for it.</div></div></div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">G</text></svg><div><div class="wg-gear-name">Galvanizing</div><div class="wg-gear-desc">Rallying people and getting the team moving.</div></div></div>
-    </div>
-    <div class="wg-group frustration">
-      <div class="wg-group-title">Frustration</div>
-      <div class="wg-group-sub">What drains me</div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">W</text></svg><div><div class="wg-gear-name">Wonder</div><div class="wg-gear-desc">Spending a long time speculating without a clear path forward.</div></div></div>
-      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">D</text></svg><div><div class="wg-gear-name">Discernment</div><div class="wg-gear-desc">Judging ideas on intuition alone, without data to rely on.</div></div></div>
-    </div>
-  </div>
 
 
 </section>
 <section class="cv-sec">
-      <h2>Skills</h2>
-      <p class="note skills-scale">Scale: Basic · Intermediate · Advanced · Expert</p>
-      <h3 class="skills-subtitle">Hard skills</h3>
-      <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-title">Methods</div>
-        <div class="skill"><div class="skill-label"><span>Mixed models and GxE</span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Genomic selection</span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Machine learning</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Bayesian methods</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Tools</div>
-        <div class="skill teal"><div class="skill-label"><span>R</span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill teal"><div class="skill-label"><span>ASReml</span><b>Expert</b></div><div class="skill-bar"><span style="width:100%"></span></div></div>
-        <div class="skill teal"><div class="skill-label"><span>BGLR</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-        <div class="skill teal"><div class="skill-label"><span>Git / GitHub</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Languages</div>
-        <div class="skill"><div class="skill-label"><span>Portuguese</span><b>Native</b></div><div class="skill-bar"><span style="width:100%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>English</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-      </div>
-      </div>
-
-      <h3 class="skills-subtitle">Soft skills</h3>
-      <div class="soft-grid">
-        <div class="skill genius"><div class="skill-label"><span>Commitment to delivery <i class="wg-tag genius">T</i></span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill genius"><div class="skill-label"><span>Persistence and results focus <i class="wg-tag genius">T</i></span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill genius"><div class="skill-label"><span>Collaboration and teamwork <i class="wg-tag genius">E</i></span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill genius"><div class="skill-label"><span>Willingness to support colleagues <i class="wg-tag genius">E</i></span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill competency"><div class="skill-label"><span>Problem solving <i class="wg-tag competency">I</i></span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-        <div class="skill competency"><div class="skill-label"><span>Leadership and team mobilization <i class="wg-tag competency">G</i></span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Communication</span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Organization and time management</span><b>Intermediate</b></div><div class="skill-bar"><span style="width:50%"></span></div></div>
-        <div class="skill"><div class="skill-label"><span>Adaptability</span><b>Advanced</b></div><div class="skill-bar"><span style="width:75%"></span></div></div>
-      </div>
-      <p class="note soft-note">The letters show the Working Genius gear related to each skill (see above): <i class="wg-tag genius">T</i> Tenacity, <i class="wg-tag genius">E</i> Enablement, <i class="wg-tag competency">I</i> Invention and <i class="wg-tag competency">G</i> Galvanizing.</p>
-
-
-</section>
-<section class="cv-sec keep">
-  <h2>Professional References</h2>
-  <div class="refs">
-    <div class="ref">
-      <div class="ref-name">Prof. Kaio Olimpio das Graças Dias</div>
-      <div class="ref-role">Federal University of Viçosa (UFV) · Ph.D. advisor</div>
-      <div class="ref-contact">kaio.o.dias@ufv.br</div>
+  <h2>Working Genius</h2>
+  <p class="wg-intro">The Table Group's Working Genius assessment. My profile is <b>Loyal Finisher (ET | TE)</b>: I draw energy from seeing tasks through to completion and from supporting the people around me.</p>
+  <div class="wg-groups">
+    <div class="wg-group genius">
+      <div class="wg-group-title">Genius</div>
+      <div class="wg-group-sub">What energizes me</div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">T</text></svg><div><div class="wg-gear-name">Tenacity</div></div></div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">E</text></svg><div><div class="wg-gear-name">Enablement</div></div></div>
     </div>
-    <div class="ref">
-      <div class="ref-name">Prof. Alexander E. Lipka</div>
-      <div class="ref-role">University of Illinois Urbana-Champaign, Department of Crop Sciences · Sandwich Ph.D. advisor</div>
-      <div class="ref-contact">alipka@illinois.edu</div>
+    <div class="wg-group competency">
+      <div class="wg-group-title">Competency</div>
+      <div class="wg-group-sub">I do it well, but it does not energize me</div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">I</text></svg><div><div class="wg-gear-name">Invention</div></div></div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">G</text></svg><div><div class="wg-gear-name">Galvanizing</div></div></div>
     </div>
-    <div class="ref">
-      <div class="ref-name">Prof. Leonardo Lopes Bhering</div>
-      <div class="ref-role">Federal University of Viçosa (UFV) · Professor in my graduate program in Genetics and Plant Breeding</div>
-      <div class="ref-contact">leonardo.bhering@ufv.br</div>
-    </div>
-    <div class="ref">
-      <div class="ref-name">Prof. Maicon Nardino</div>
-      <div class="ref-role">Federal University of Viçosa (UFV), Department of Agronomy · M.Sc. advisor</div>
-      <div class="ref-contact">nardino@ufv.br</div>
+    <div class="wg-group frustration">
+      <div class="wg-group-title">Frustration</div>
+      <div class="wg-group-sub">What drains me</div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">W</text></svg><div><div class="wg-gear-name">Wonder</div></div></div>
+      <div class="wg-gear"><svg viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="18" rx="2"/><rect x="46" y="82" width="8" height="18" rx="2"/><rect x="0" y="46" width="18" height="8" rx="2"/><rect x="82" y="46" width="18" height="8" rx="2"/><rect x="46" y="0" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="46" y="82" width="8" height="18" rx="2" transform="rotate(45 50 50)"/><rect x="0" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><rect x="82" y="46" width="18" height="8" rx="2" transform="rotate(45 50 50)"/><circle cx="50" cy="50" r="33"/></g><circle cx="50" cy="50" r="23" fill="#fff"/><text x="50" y="59" text-anchor="middle" font-size="26" font-weight="700" font-family="sans-serif" fill="currentColor">D</text></svg><div><div class="wg-gear-name">Discernment</div></div></div>
     </div>
   </div>
-
 </section>
 </div>
 
