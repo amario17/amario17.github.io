@@ -280,39 +280,127 @@ write.csv(W_M1, "envcov_M1.csv", row.names = FALSE)</code></pre>
         <div class="tool-card">
           <button class="tool-card-header" onclick="toggleTool(this)">
             <div class="tool-banner">
-              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BLUE matrix icon">
-                <defs><linearGradient id="tD" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6b2c1f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
-                <rect width="84" height="84" rx="12" fill="url(#tD)"/>
-                <g transform="translate(12,12)">
-                  <rect x="0" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="12" y="0" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/><rect x="24" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="36" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="48" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/>
-                  <rect x="0" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="12" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="24" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="36" y="12" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/><rect x="48" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/>
-                  <rect x="0" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="12" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="24" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="36" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="48" y="24" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/>
-                  <rect x="0" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="12" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="24" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="36" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="48" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/>
-                  <rect x="0" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="12" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="24" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="36" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="48" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/>
-                </g>
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Factor analytic loadings icon">
+                <defs><linearGradient id="tFa" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tFa)"/>
+                <line x1="16" y1="68" x2="68" y2="68" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="16" y1="68" x2="16" y2="16" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="16" y1="68" x2="62" y2="26" stroke="#14b58e" stroke-width="3" stroke-linecap="round"/>
+                <line x1="16" y1="68" x2="40" y2="58" stroke="#ffffff" stroke-opacity="0.7" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="62" cy="26" r="4" fill="#14b58e"/><circle cx="40" cy="58" r="3.5" fill="#ffffff" opacity="0.7"/>
+                <circle cx="30" cy="36" r="2.5" fill="#ffffff" opacity="0.35"/><circle cx="50" cy="46" r="2.5" fill="#ffffff" opacity="0.35"/><circle cx="38" cy="30" r="2.5" fill="#ffffff" opacity="0.35"/>
               </svg>
             </div>
             <div class="tool-summary">
-              <h3>get_blues()</h3>
-              <p class="tool-desc">First stage of a two-stage MET analysis: BLUEs (or BLUPs) for each environment, the genotype &#215; environment matrix and 1/se&#178; weights for the second-stage GxE model.</p>
+              <h3>fa_model()</h3>
+              <p class="tool-desc">Post-processes an ASReml factor analytic (FA) model: loadings and scores rotated to canonical form, genetic (co)variance and correlation between environments, explained variance, ASVR, AIC/BIC and genotype predictions.</p>
             </div>
             <span class="tool-toggle-icon">+</span>
           </button>
           <div class="tool-details" hidden>
             <h4>How it works</h4>
-            <p><code>get_blues()</code> is the first stage of a two-stage multi-environment analysis. For each environment it fits <code>y = mu + g + b + e</code> in ASReml. By default genotype is fixed, so it returns BLUEs rather than BLUPs and avoids double shrinkage before the genomic stage, and block is random, which works better with few blocks and recovers inter-block information. Setting <code>genotype_random = TRUE</code> returns BLUPs and Cullis heritability for each environment instead. Besides the long BLUE table and the wide genotype &#215; environment matrix, it returns 1/se&#178; weights ready for the second-stage GxE or genomic model, diagnostics for each environment (n, convergence, CV%) and the list of environments that failed to converge.</p>
+            <p><code>fa_model()</code> takes a mixed model fitted in ASReml with a factor analytic term, either <code>gen:fa(env, k)</code> or, with a genomic relationship matrix, <code>fa(env, k):vm(gen, G)</code>. It reads the loadings and the genotype scores and rotates them to canonical form by singular value decomposition of the loading matrix, so the first factor explains the most genetic variance:</p>
+            <pre><code>Lambda = U S V'     rotated loadings = U     factor variances D = S&#178;
+rotated scores = f V sqrt(D)</code></pre>
+            <p>From the rotated solution it builds the genetic covariance matrix between environments, <code>G = Lambda* D Lambda*' + Psi</code>, and its correlation matrix. It reports the share of the genetic variance captured by the factors (overall and per factor and environment), the Average Semivariance Ratio (ASVR), AIC, BIC and the log-likelihood, which helps choose the number of factors. It also returns the common part of each genotype's prediction in each environment (<code>Lambda f</code>), which is the input for predicting untested environments in GIS-FA.</p>
+            <p class="tool-refs">Piepho (1997), Biometrics 53(2), 761&#8211;766 · Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147. Adapted from <code>fa.outs</code> by Prof. Saulo Chaves (ESALQ/USP).</p>
             <div class="tool-links">
-              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/get_blues.R" target="_blank" rel="noopener">View code &#8594;</a>
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/fa_model.R" target="_blank" rel="noopener">View code &#8594;</a>
             </div>
             <h4>Usage example</h4>
-            <pre><code>res &lt;- get_blues(dados, trait = "GY")
+            <pre><code>mod &lt;- asreml(GY ~ env, random = ~ gen:fa(env, 3),
+              residual = ~ dsum(~ id(units) | env), data = data)
 
-res$blues        # env, gen, blue, se
-res$wide         # genotypes x environments matrix
-res$summary      # per-environment diagnostics (n, convergence, CV%)
-res$failed       # environments that did not converge
+res &lt;- fa_model(mod, name.env = "env", name.gen = "gen")
+res$diagnostics      # expvar, ASVR, aic, bic, logl
+res$rot.loads        # rotated loadings (environment x factor)
+res$Gcor             # genetic correlation between environments</code></pre>
+          </div>
+        </div>
 
-write.csv(res$blues, "blues_M4.csv", row.names = FALSE)</code></pre>
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reduced rank model icon">
+                <defs><linearGradient id="tRr" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6b2c1f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tRr)"/>
+                <g transform="translate(14,14)">
+                  <rect x="0" y="0" width="14" height="56" rx="3" fill="#14b58e"/>
+                  <rect x="18" y="0" width="14" height="56" rx="3" fill="#ffffff" opacity="0.35"/>
+                  <rect x="40" y="0" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="16" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="32" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="48" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <text x="36" y="31" font-family="sans-serif" font-size="10" fill="#ffffff">+</text>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>fa_model_rr()</h3>
+              <p class="tool-desc">The same post-processing as fa_model() for the reduced-rank form, rr(env, k):vm(gen, G) + diag(env):gen, where the genomic relationship enters only the common factors.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>How it works</h4>
+            <p>With a large genomic relationship matrix, an FA model can be fitted as two separate terms: a reduced-rank term <code>rr(env, k):vm(gen, G)</code> for the common factors, and a <code>diag(env):gen</code> term for the specific variance of each environment, which then has no relationship matrix. This form uses much less memory and is often the only one that fits on large multi-environment data. In it, ASReml keeps the specific variances of the <code>rr</code> term fixed at zero and estimates them in the <code>diag</code> term. <code>fa_model_rr()</code> reads them from there and then does exactly what <code>fa_model()</code> does: SVD rotation, genetic covariance and correlation, explained variance, ASVR, AIC/BIC and the common part of the predictions. It also works on <code>fa()</code> models with or without a relationship matrix, giving the same result as <code>fa_model()</code>, and it avoids building large Kronecker matrices, so it runs with thousands of genotypes.</p>
+            <pre><code>G = Lambda* D Lambda*' + Psi     Psi from diag(env):gen</code></pre>
+            <p class="tool-refs">Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147 · Thompson, Cullis, Smith &amp; Gilmour (2003), Aust. N.Z. J. Stat. 45(4), 445&#8211;459.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/fa_model_rr.R" target="_blank" rel="noopener">View code &#8594;</a>
+            </div>
+            <h4>Usage example</h4>
+            <pre><code>Gg  &lt;- 0.99 * GK + 0.01 * diag(nrow(GK))    # kernel, invertible
+mod &lt;- asreml(blue ~ Env,
+              random = ~ rr(Env, 4):vm(Hybrid, Gg) + diag(Env):Hybrid,
+              weights = W, family = asr_gaussian(dispersion = 1),
+              data = blues)
+
+res &lt;- fa_model_rr(mod, name.env = "Env", name.gen = "Hybrid")
+res$diagnostics
+res$Gvcov            # includes the specific variances from diag(Env):Hybrid</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hybrid genotype icon">
+                <defs><linearGradient id="tHf" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tHf)"/>
+                <circle cx="24" cy="22" r="9" fill="#ffffff" opacity="0.4"/>
+                <circle cx="60" cy="22" r="9" fill="#ffffff" opacity="0.4"/>
+                <line x1="24" y1="31" x2="42" y2="52" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2.5"/>
+                <line x1="60" y1="31" x2="42" y2="52" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2.5"/>
+                <circle cx="42" cy="60" r="10" fill="#14b58e"/>
+                <text x="37" y="64" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">F1</text>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>hybridForge()</h3>
+              <p class="tool-desc">Builds the SNP genotypes of F1 hybrids from the genotypes of their two inbred parents, for genomic prediction of hybrids that were never genotyped.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>How it works</h4>
+            <p><code>hybridForge()</code> reconstructs each hybrid's genotype, marker by marker, from its two parental lines coded 0/1/2. It uses a strict rule: a hybrid genotype is called only when both parents are homozygous at that marker. Any marker where a parent is heterozygous or missing is returned as <code>NA</code> instead of being approximated, so the result never has fractional dosages:</p>
+            <pre><code>P1 = 2 and P2 = 2   -&gt; hybrid = 2
+P1 = 0 and P2 = 0   -&gt; hybrid = 0
+P1 = 2, P2 = 0 (or the reverse) -&gt; hybrid = 1
+anything else       -&gt; NA</code></pre>
+            <p>The calculation is vectorized over all hybrids and markers at once, so it scales to genome-wide panels with hundreds of thousands of SNPs. It reports how many hybrids had both parents genotyped and which were dropped. The output matrix (hybrids x markers) can go straight into a genomic relationship matrix or kernel.</p>
+            <p class="tool-refs">Adapted for general use from an original hybrid-genotype script by K.O.G. Dias (2018).</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/hybridForge.R" target="_blank" rel="noopener">View code &#8594;</a>
+            </div>
+            <h4>Usage example</h4>
+            <pre><code>geno     &lt;- readRDS("parent_markers.rds")      # lines x SNPs, 0/1/2
+pedigree &lt;- read.csv("hybrids.csv")             # ID, Pai, Mae
+
+hyb &lt;- hybridForge(geno, pedigree,
+                   parent1_col = "Pai", parent2_col = "Mae", hybrid_col = "ID")
+dim(hyb)             # hybrids x SNPs</code></pre>
           </div>
         </div>
 
@@ -772,39 +860,127 @@ write.csv(W_M1, "envcov_M1.csv", row.names = FALSE)</code></pre>
         <div class="tool-card">
           <button class="tool-card-header" onclick="toggleTool(this)">
             <div class="tool-banner">
-              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone de matriz de BLUEs">
-                <defs><linearGradient id="tDb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6b2c1f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
-                <rect width="84" height="84" rx="12" fill="url(#tDb)"/>
-                <g transform="translate(12,12)">
-                  <rect x="0" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="12" y="0" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/><rect x="24" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="36" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="48" y="0" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/>
-                  <rect x="0" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="12" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="24" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="36" y="12" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/><rect x="48" y="12" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/>
-                  <rect x="0" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="12" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="24" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="36" y="24" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="48" y="24" width="10" height="10" rx="2" fill="#14b58e" opacity="0.9"/>
-                  <rect x="0" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="12" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="24" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="36" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="48" y="36" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/>
-                  <rect x="0" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/><rect x="12" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.4"/><rect x="24" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.22"/><rect x="36" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.18"/><rect x="48" y="48" width="10" height="10" rx="2" fill="#ffffff" opacity="0.32"/>
-                </g>
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone das cargas do modelo fatorial">
+                <defs><linearGradient id="pFa" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#pFa)"/>
+                <line x1="16" y1="68" x2="68" y2="68" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="16" y1="68" x2="16" y2="16" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <line x1="16" y1="68" x2="62" y2="26" stroke="#14b58e" stroke-width="3" stroke-linecap="round"/>
+                <line x1="16" y1="68" x2="40" y2="58" stroke="#ffffff" stroke-opacity="0.7" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="62" cy="26" r="4" fill="#14b58e"/><circle cx="40" cy="58" r="3.5" fill="#ffffff" opacity="0.7"/>
+                <circle cx="30" cy="36" r="2.5" fill="#ffffff" opacity="0.35"/><circle cx="50" cy="46" r="2.5" fill="#ffffff" opacity="0.35"/><circle cx="38" cy="30" r="2.5" fill="#ffffff" opacity="0.35"/>
               </svg>
             </div>
             <div class="tool-summary">
-              <h3>get_blues()</h3>
-              <p class="tool-desc">Primeiro estágio de uma análise MET em dois estágios: BLUEs (ou BLUPs) por ambiente, a matriz genótipos &#215; ambientes e os pesos 1/se&#178; para o modelo GxE do segundo estágio.</p>
+              <h3>fa_model()</h3>
+              <p class="tool-desc">Pós-processa um modelo fatorial (FA) do ASReml: cargas e escores rotacionados para a forma canônica, covariância e correlação genética entre ambientes, variância explicada, ASVR, AIC/BIC e predições dos genótipos.</p>
             </div>
             <span class="tool-toggle-icon">+</span>
           </button>
           <div class="tool-details" hidden>
             <h4>Como funciona</h4>
-            <p>A <code>get_blues()</code> é o primeiro estágio de uma análise multiambiental em dois estágios. Para cada ambiente, ela ajusta <code>y = mu + g + b + e</code> no ASReml. Por padrão, o genótipo é fixo, então a função devolve BLUEs, e não BLUPs, evitando o encolhimento duplo antes do estágio genômico. Já o bloco é aleatório por padrão, o que funciona melhor com poucos blocos e recupera informação interbloco. Com <code>genotype_random = TRUE</code>, ela devolve BLUPs e a herdabilidade de Cullis por ambiente. Além da tabela longa de BLUEs e da matriz larga genótipos &#215; ambientes, a função devolve pesos 1/se&#178; prontos para o modelo GxE ou genômico do segundo estágio, diagnósticos por ambiente (n, convergência, CV%) e a lista de ambientes que não convergiram.</p>
+            <p>A <code>fa_model()</code> recebe um modelo misto ajustado no ASReml com um termo fatorial, seja <code>gen:fa(env, k)</code> ou, com matriz de parentesco genômico, <code>fa(env, k):vm(gen, G)</code>. Ela lê as cargas e os escores dos genótipos e os rotaciona para a forma canônica pela decomposição em valores singulares da matriz de cargas, de modo que o primeiro fator explique a maior parte da variância genética:</p>
+            <pre><code>Lambda = U S V'     cargas rotacionadas = U     variâncias dos fatores D = S&#178;
+escores rotacionados = f V sqrt(D)</code></pre>
+            <p>Com a solução rotacionada, ela monta a matriz de covariância genética entre ambientes, <code>G = Lambda* D Lambda*' + Psi</code>, e a matriz de correlação. Informa a parte da variância genética captada pelos fatores (no total e por fator e ambiente), a <em>Average Semivariance Ratio</em> (ASVR), AIC, BIC e a log-verossimilhança, que ajudam a escolher o número de fatores. Também devolve a parte comum da predição de cada genótipo em cada ambiente (<code>Lambda f</code>), que é o insumo para predizer ambientes não testados no GIS-FA.</p>
+            <p class="tool-refs">Piepho (1997), Biometrics 53(2), 761&#8211;766 · Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147. Adaptada da <code>fa.outs</code> do Prof. Saulo Chaves (ESALQ/USP).</p>
             <div class="tool-links">
-              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/get_blues.R" target="_blank" rel="noopener">Ver código &#8594;</a>
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/fa_model.R" target="_blank" rel="noopener">Ver código &#8594;</a>
             </div>
             <h4>Exemplo de uso</h4>
-            <pre><code>res &lt;- get_blues(dados, trait = "GY")
+            <pre><code>mod &lt;- asreml(GY ~ env, random = ~ gen:fa(env, 3),
+              residual = ~ dsum(~ id(units) | env), data = data)
 
-res$blues        # env, gen, blue, se
-res$wide         # matriz genótipos x ambientes
-res$summary      # diagnóstico por ambiente (n, convergência, CV%)
-res$failed       # ambientes que não convergiram
+res &lt;- fa_model(mod, name.env = "env", name.gen = "gen")
+res$diagnostics      # expvar, ASVR, aic, bic, logl
+res$rot.loads        # cargas rotacionadas (ambiente x fator)
+res$Gcor             # correlação genética entre ambientes</code></pre>
+          </div>
+        </div>
 
-write.csv(res$blues, "blues_M4.csv", row.names = FALSE)</code></pre>
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone do modelo de posto reduzido">
+                <defs><linearGradient id="pRr" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6b2c1f"/><stop offset="100%" stop-color="#8b3a2a"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#pRr)"/>
+                <g transform="translate(14,14)">
+                  <rect x="0" y="0" width="14" height="56" rx="3" fill="#14b58e"/>
+                  <rect x="18" y="0" width="14" height="56" rx="3" fill="#ffffff" opacity="0.35"/>
+                  <rect x="40" y="0" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="16" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="32" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <rect x="40" y="48" width="7" height="7" rx="2" fill="#ffffff" opacity="0.7"/>
+                  <text x="36" y="31" font-family="sans-serif" font-size="10" fill="#ffffff">+</text>
+                </g>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>fa_model_rr()</h3>
+              <p class="tool-desc">O mesmo pós-processamento da fa_model() para a forma de posto reduzido, rr(env, k):vm(gen, G) + diag(env):gen, em que o parentesco genômico entra só nos fatores comuns.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>Como funciona</h4>
+            <p>Com uma matriz de parentesco genômico grande, o modelo FA pode ser ajustado em dois termos separados: um termo de posto reduzido <code>rr(env, k):vm(gen, G)</code> para os fatores comuns e um termo <code>diag(env):gen</code> para a variância específica de cada ambiente, que fica sem matriz de parentesco. Essa forma usa bem menos memória e muitas vezes é a única que cabe em dados multiambientais grandes. Nela, o ASReml deixa as variâncias específicas do termo <code>rr</code> fixas em zero e as estima no termo <code>diag</code>. A <code>fa_model_rr()</code> lê essas variâncias de lá e faz exatamente o mesmo que a <code>fa_model()</code>: rotação por SVD, covariância e correlação genética, variância explicada, ASVR, AIC/BIC e a parte comum das predições. Ela também funciona em modelos <code>fa()</code>, com ou sem matriz de parentesco, dando o mesmo resultado da <code>fa_model()</code>, e não monta matrizes de Kronecker grandes, então roda com milhares de genótipos.</p>
+            <pre><code>G = Lambda* D Lambda*' + Psi     Psi do diag(env):gen</code></pre>
+            <p class="tool-refs">Smith, Cullis &amp; Thompson (2001), Biometrics 57(4), 1138&#8211;1147 · Thompson, Cullis, Smith &amp; Gilmour (2003), Aust. N.Z. J. Stat. 45(4), 445&#8211;459.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/fa_model_rr.R" target="_blank" rel="noopener">Ver código &#8594;</a>
+            </div>
+            <h4>Exemplo de uso</h4>
+            <pre><code>Gg  &lt;- 0.99 * GK + 0.01 * diag(nrow(GK))    # kernel inversível
+mod &lt;- asreml(blue ~ Env,
+              random = ~ rr(Env, 4):vm(Hybrid, Gg) + diag(Env):Hybrid,
+              weights = W, family = asr_gaussian(dispersion = 1),
+              data = blues)
+
+res &lt;- fa_model_rr(mod, name.env = "Env", name.gen = "Hybrid")
+res$diagnostics
+res$Gvcov            # inclui as variâncias específicas do diag(Env):Hybrid</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone do genótipo do híbrido">
+                <defs><linearGradient id="pHf" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#pHf)"/>
+                <circle cx="24" cy="22" r="9" fill="#ffffff" opacity="0.4"/>
+                <circle cx="60" cy="22" r="9" fill="#ffffff" opacity="0.4"/>
+                <line x1="24" y1="31" x2="42" y2="52" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2.5"/>
+                <line x1="60" y1="31" x2="42" y2="52" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2.5"/>
+                <circle cx="42" cy="60" r="10" fill="#14b58e"/>
+                <text x="37" y="64" font-family="sans-serif" font-size="11" font-weight="700" fill="#ffffff">F1</text>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>hybridForge()</h3>
+              <p class="tool-desc">Monta os genótipos SNP dos híbridos F1 a partir dos genótipos das duas linhagens parentais, para a predição genômica de híbridos que nunca foram genotipados.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>Como funciona</h4>
+            <p>A <code>hybridForge()</code> reconstrói o genótipo de cada híbrido, marcador por marcador, a partir das duas linhagens parentais codificadas em 0/1/2. Ela usa uma regra rígida: o genótipo do híbrido só é definido quando os dois pais são homozigotos naquele marcador. Qualquer marcador em que um dos pais seja heterozigoto ou tenha dado faltante volta como <code>NA</code>, em vez de ser aproximado, então o resultado nunca tem dosagens fracionárias:</p>
+            <pre><code>P1 = 2 e P2 = 2   -&gt; híbrido = 2
+P1 = 0 e P2 = 0   -&gt; híbrido = 0
+P1 = 2, P2 = 0 (ou o contrário) -&gt; híbrido = 1
+qualquer outro caso -&gt; NA</code></pre>
+            <p>A conta é vetorizada para todos os híbridos e marcadores de uma vez, então escala para painéis de genoma inteiro com centenas de milhares de SNPs. A função informa quantos híbridos tinham os dois pais genotipados e quais foram descartados. A matriz de saída (híbridos x marcadores) vai direto para uma matriz de parentesco genômico ou um kernel.</p>
+            <p class="tool-refs">Adaptada para uso geral a partir de um script original de genótipos de híbridos de K.O.G. Dias (2018).</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/hybridForge.R" target="_blank" rel="noopener">Ver código &#8594;</a>
+            </div>
+            <h4>Exemplo de uso</h4>
+            <pre><code>geno     &lt;- readRDS("marcadores_pais.rds")     # linhagens x SNPs, 0/1/2
+pedigree &lt;- read.csv("hibridos.csv")            # ID, Pai, Mae
+
+hyb &lt;- hybridForge(geno, pedigree,
+                   parent1_col = "Pai", parent2_col = "Mae", hybrid_col = "ID")
+dim(hyb)             # híbridos x SNPs</code></pre>
           </div>
         </div>
 
