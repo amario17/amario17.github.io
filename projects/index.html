@@ -407,6 +407,43 @@ dim(hyb)             # hybrids x SNPs</code></pre>
         <div class="tool-card">
           <button class="tool-card-header" onclick="toggleTool(this)">
             <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gaussian kernel icon">
+                <defs><linearGradient id="tGk" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tGk)"/>
+                <line x1="12" y1="66" x2="72" y2="66" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <path d="M12 64 C 28 64, 32 18, 42 18 C 52 18, 56 64, 72 64" fill="none" stroke="#14b58e" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M12 64 C 24 64, 34 38, 42 38 C 50 38, 60 64, 72 64" fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>gaussian_kernel()</h3>
+              <p class="tool-desc">Builds a Gaussian kernel from marker data, with the bandwidth fixed or optimised from the phenotype, and returns the bandwidth used together with the kernel.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>How it works</h4>
+            <p><code>gaussian_kernel()</code> computes the relationship between individuals as <code>K = exp(-h &middot; d&sup2; / q)</code>, where <code>d&sup2;</code> is the squared Euclidean distance between their marker profiles, <code>q</code> is the median of all distances and <code>h</code> is the bandwidth. A larger <code>h</code> makes the kernel decay faster with distance, so individuals look less related.</p>
+            <p>The bandwidth can be fixed by the user or chosen from a phenotype vector (for example, genotype BLUEs). In the second case, <code>h</code> and the ratio between genetic and residual variance are optimised together by the marginal likelihood, with a gamma prior on <code>h</code>. The function returns the kernel together with the bandwidth used, the median distance and the optimised variance ratio, so the bandwidth can be reported in a paper. Distances are computed with matrix products instead of <code>dist()</code>, which keeps it fast on panels with hundreds of thousands of SNPs (about 6 min instead of 1 h for 1,691 hybrids &times; 302,300 SNPs).</p>
+            <p class="tool-refs">Based on <code>GK_Kernel</code> by Germano Costa-Neto (<a href="https://github.com/gcostaneto/KernelMethods" target="_blank" rel="noopener">KernelMethods</a>). Costa-Neto, Fritsche-Neto &amp; Crossa (2021), <em>Heredity</em> 126:92&ndash;106; P&eacute;rez-Elizalde et al. (2015), <em>JABES</em> 20:512&ndash;532.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/gaussian_kernel.R" target="_blank" rel="noopener">View code &#8594;</a>
+            </div>
+            <h4>Usage example</h4>
+            <pre><code>M    &lt;- readRDS("hybrid_markers.rds")   # hybrids x SNPs, 0/1/2
+blue &lt;- readRDS("hybrid_blues.rds")     # named vector of BLUEs
+
+gk &lt;- gaussian_kernel(M, y = blue)      # bandwidth optimised
+gk$h                                    # bandwidth used
+Gg &lt;- 0.99 * gk$K + 0.01 * diag(nrow(gk$K))
+
+gk1 &lt;- gaussian_kernel(M, h = 1)        # fixed bandwidth</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
               <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pivot location selection icon">
                 <defs><linearGradient id="tE" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
                 <rect width="84" height="84" rx="12" fill="url(#tE)"/>
@@ -981,6 +1018,43 @@ pedigree &lt;- read.csv("hibridos.csv")            # ID, Pai, Mae
 hyb &lt;- hybridForge(geno, pedigree,
                    parent1_col = "Pai", parent2_col = "Mae", hybrid_col = "ID")
 dim(hyb)             # híbridos x SNPs</code></pre>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <button class="tool-card-header" onclick="toggleTool(this)">
+            <div class="tool-banner">
+              <svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone de kernel gaussiano">
+                <defs><linearGradient id="tGkb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b3a2a"/><stop offset="100%" stop-color="#6b2c1f"/></linearGradient></defs>
+                <rect width="84" height="84" rx="12" fill="url(#tGkb)"/>
+                <line x1="12" y1="66" x2="72" y2="66" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+                <path d="M12 64 C 28 64, 32 18, 42 18 C 52 18, 56 64, 72 64" fill="none" stroke="#14b58e" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M12 64 C 24 64, 34 38, 42 38 C 50 38, 60 64, 72 64" fill="none" stroke="#ffffff" stroke-opacity="0.45" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="tool-summary">
+              <h3>gaussian_kernel()</h3>
+              <p class="tool-desc">Constrói o kernel gaussiano a partir dos marcadores, com a largura de banda fixa ou otimizada pelo fenótipo, e devolve o valor usado junto com o kernel.</p>
+            </div>
+            <span class="tool-toggle-icon">+</span>
+          </button>
+          <div class="tool-details" hidden>
+            <h4>Como funciona</h4>
+            <p>A <code>gaussian_kernel()</code> calcula o parentesco entre indivíduos como <code>K = exp(-h &middot; d&sup2; / q)</code>, em que <code>d&sup2;</code> é a distância euclidiana ao quadrado entre os perfis de marcadores, <code>q</code> é a mediana de todas as distâncias e <code>h</code> é a largura de banda. Quanto maior o <code>h</code>, mais rápido o kernel cai com a distância e menos aparentados os indivíduos parecem.</p>
+            <p>A largura de banda pode ser fixada pelo usuário ou escolhida a partir de um vetor fenotípico (por exemplo, os BLUEs dos genótipos). Nesse caso, o <code>h</code> e a razão entre a variância genética e a residual são otimizados juntos pela verossimilhança marginal, com uma priori gama no <code>h</code>. A função devolve o kernel junto com o <code>h</code> usado, a mediana das distâncias e a razão de variâncias otimizada, para que a largura de banda possa ser relatada no artigo. As distâncias são calculadas por produto de matrizes, e não pelo <code>dist()</code>, o que a deixa rápida em painéis com centenas de milhares de SNPs (cerca de 6 min, em vez de 1 h, para 1.691 híbridos &times; 302.300 SNPs).</p>
+            <p class="tool-refs">Baseada no <code>GK_Kernel</code> de Germano Costa-Neto (<a href="https://github.com/gcostaneto/KernelMethods" target="_blank" rel="noopener">KernelMethods</a>). Costa-Neto, Fritsche-Neto &amp; Crossa (2021), <em>Heredity</em> 126:92&ndash;106; P&eacute;rez-Elizalde et al. (2015), <em>JABES</em> 20:512&ndash;532.</p>
+            <div class="tool-links">
+              <a class="tool-link-btn" href="https://github.com/amario17/qgtools/blob/main/gaussian_kernel.R" target="_blank" rel="noopener">Ver código &#8594;</a>
+            </div>
+            <h4>Exemplo de uso</h4>
+            <pre><code>M    &lt;- readRDS("marcadores_hibridos.rds")   # híbridos x SNPs, 0/1/2
+blue &lt;- readRDS("blues_hibridos.rds")        # vetor de BLUEs com nomes
+
+gk &lt;- gaussian_kernel(M, y = blue)           # largura de banda otimizada
+gk$h                                         # largura de banda usada
+Gg &lt;- 0.99 * gk$K + 0.01 * diag(nrow(gk$K))
+
+gk1 &lt;- gaussian_kernel(M, h = 1)             # largura de banda fixa</code></pre>
           </div>
         </div>
 
