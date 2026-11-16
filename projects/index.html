@@ -389,6 +389,7 @@ res$Gvcov            # includes the specific variances from diag(Env):Hybrid</co
 P1 = 0 and P2 = 0   -&gt; hybrid = 0
 P1 = 2, P2 = 0 (or the reverse) -&gt; hybrid = 1
 anything else       -&gt; NA</code></pre>
+            <p>With <code>method = "mean"</code>, heterozygous parental calls are set to missing, missing calls are imputed by the marker mean across the parental lines, and the hybrid dosage is the mean of the two parents, <code>(P1 + P2) / 2</code>. At homozygous markers the result is the same as the strict rule; at imputed markers it is the expected dosage, so the matrix has no missing values.</p>
             <p>The calculation is vectorized over all hybrids and markers at once, so it scales to genome-wide panels with hundreds of thousands of SNPs. It reports how many hybrids had both parents genotyped and which were dropped. The output matrix (hybrids x markers) can go straight into a genomic relationship matrix or kernel.</p>
             <p class="tool-refs">Adapted for general use from an original hybrid-genotype script by K.O.G. Dias (2018).</p>
             <div class="tool-links">
@@ -400,7 +401,9 @@ pedigree &lt;- read.csv("hybrids.csv")             # ID, Pai, Mae
 
 hyb &lt;- hybridForge(geno, pedigree,
                    parent1_col = "Pai", parent2_col = "Mae", hybrid_col = "ID")
-dim(hyb)             # hybrids x SNPs</code></pre>
+dim(hyb)             # hybrids x SNPs
+
+hyb_m &lt;- hybridForge(geno, pedigree, method = "mean")   # imputed, no NA</code></pre>
           </div>
         </div>
 
@@ -1006,6 +1009,7 @@ res$Gvcov            # inclui as variâncias específicas do diag(Env):Hybrid</c
 P1 = 0 e P2 = 0   -&gt; híbrido = 0
 P1 = 2, P2 = 0 (ou o contrário) -&gt; híbrido = 1
 qualquer outro caso -&gt; NA</code></pre>
+            <p>Com <code>method = "mean"</code>, os heterozigotos dos pais viram dado faltante, os faltantes são imputados pela média do marcador nas linhagens parentais, e a dose do híbrido é a média dos dois pais, <code>(P1 + P2) / 2</code>. Nos marcadores homozigotos o resultado é o mesmo da regra rígida; nos imputados é a dose esperada, então a matriz não tem dados faltantes.</p>
             <p>A conta é vetorizada para todos os híbridos e marcadores de uma vez, então escala para painéis de genoma inteiro com centenas de milhares de SNPs. A função informa quantos híbridos tinham os dois pais genotipados e quais foram descartados. A matriz de saída (híbridos x marcadores) vai direto para uma matriz de parentesco genômico ou um kernel.</p>
             <p class="tool-refs">Adaptada para uso geral a partir de um script original de genótipos de híbridos de K.O.G. Dias (2018).</p>
             <div class="tool-links">
@@ -1017,7 +1021,9 @@ pedigree &lt;- read.csv("hibridos.csv")            # ID, Pai, Mae
 
 hyb &lt;- hybridForge(geno, pedigree,
                    parent1_col = "Pai", parent2_col = "Mae", hybrid_col = "ID")
-dim(hyb)             # híbridos x SNPs</code></pre>
+dim(hyb)             # híbridos x SNPs
+
+hyb_m &lt;- hybridForge(geno, pedigree, method = "mean")   # imputado, sem NA</code></pre>
           </div>
         </div>
 
